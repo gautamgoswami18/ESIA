@@ -1,0 +1,74 @@
+"skill_id","skill_name","category","description","active"
+1,"Java","Backend","Java Programming Language",True
+2,"Spring Boot","Backend","Spring Boot Framework",True
+3,"Hibernate","Backend","ORM Framework",True
+4,"Microservices","Backend","Microservices Architecture",True
+5,"REST API","Backend","RESTful Web Services",True
+6,"Kafka","Backend","Apache Kafka",True
+7,"Maven","Backend","Build Tool",True
+8,"JUnit","Backend","Unit Testing Framework",True
+9,"Node.js","Backend","Node.js Runtime",True
+10,"Express.js","Backend","Express Framework",True
+11,"Python","Backend","Python Programming",True
+12,"Django","Backend","Django Framework",True
+13,"FastAPI","Backend","FastAPI Framework",True
+14,"Flask","Backend","Flask Framework",True
+15,".NET Core","Backend",".NET Core Framework",True
+16,"C#","Backend","C# Programming Language",True
+17,"React","Frontend","React JS",True
+18,"Angular","Frontend","Angular Framework",True
+19,"Vue.js","Frontend","Vue Framework",True
+20,"TypeScript","Frontend","TypeScript Language",True
+21,"JavaScript","Frontend","JavaScript Language",True
+22,"HTML5","Frontend","HTML5",True
+23,"CSS3","Frontend","CSS3",True
+24,"Bootstrap","Frontend","Bootstrap Framework",True
+25,"Tailwind CSS","Frontend","Tailwind CSS",True
+26,"Redux","Frontend","Redux State Management",True
+27,"Next.js","Frontend","Next.js Framework",True
+28,"AWS","Cloud","Amazon Web Services",True
+29,"Azure","Cloud","Microsoft Azure",True
+30,"Google Cloud","Cloud","Google Cloud Platform",True
+31,"OpenShift","Cloud","RedHat OpenShift",True
+32,"Docker","DevOps","Docker Containers",True
+33,"Kubernetes","DevOps","Container Orchestration",True
+34,"Terraform","DevOps","Infrastructure as Code",True
+35,"Ansible","DevOps","Configuration Management",True
+36,"Jenkins","DevOps","CI/CD Tool",True
+37,"GitHub Actions","DevOps","CI/CD Pipeline",True
+38,"Helm","DevOps","Kubernetes Package Manager",True
+39,"PostgreSQL","Database","PostgreSQL Database",True
+40,"MySQL","Database","MySQL Database",True
+41,"Oracle","Database","Oracle Database",True
+42,"MongoDB","Database","MongoDB NoSQL",True
+43,"SQL Server","Database","Microsoft SQL Server",True
+44,"Redis","Database","Redis Cache",True
+45,"Apache Spark","Data Engineering","Distributed Processing",True
+46,"Hadoop","Data Engineering","Big Data Framework",True
+47,"Airflow","Data Engineering","Workflow Scheduler",True
+48,"Databricks","Data Engineering","Lakehouse Platform",True
+49,"Snowflake","Data Engineering","Cloud Data Warehouse",True
+50,"Prompt Engineering","AI","Prompt Design",True
+51,"LangChain","AI","LLM Framework",True
+52,"LangGraph","AI","Agent Framework",True
+53,"RAG","AI","Retrieval Augmented Generation",True
+54,"MCP","AI","Model Context Protocol",True
+55,"ChromaDB","AI","Vector Database",True
+56,"FAISS","AI","Vector Search Library",True
+57,"Pinecone","AI","Managed Vector Database",True
+58,"OpenAI API","AI","OpenAI API Integration",True
+59,"Azure OpenAI","AI","Azure OpenAI Service",True
+60,"Selenium","Testing","UI Automation",True
+61,"Playwright","Testing","Modern UI Automation",True
+62,"JUnit Testing","Testing","Java Testing",True
+63,"Postman","Testing","API Testing",True
+64,"JMeter","Testing","Performance Testing",True
+65,"Android","Mobile","Android Development",True
+66,"Kotlin","Mobile","Kotlin Language",True
+67,"Flutter","Mobile","Flutter Framework",True
+68,"React Native","Mobile","Cross Platform Mobile",True
+69,"Swift","Mobile","iOS Development",True
+70,"Salesforce","CRM","Salesforce Platform",True
+71,"Apex","CRM","Apex Programming",True
+72,"Lightning Web Components","CRM","LWC Development",True
+73,"SOQL","CRM","Salesforce Query Language",True
