@@ -13,3 +13,6 @@ class ResumeService:
 
     def get_by_employee_id(self, employee_id: int):
         return self.repository.get_by_employee_id(employee_id)
+    
+    def get_resume_file(self, employee_id: int):
+        return self.repository.get_resume_file(employee_id)

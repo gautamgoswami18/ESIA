@@ -73,3 +73,18 @@ class ResumeRepository(BaseRepository):
             sql,
             {"employee_id": employee_id}
         )
+    
+    def get_resume_file(self, employee_id: int):
+        
+        sql = """
+            SELECT
+                file_name,
+                file_path
+            FROM esia.resume_metadata
+            WHERE employee_id = :employee_id
+        """
+    
+        return self.fetch_one(
+            sql,
+            {"employee_id": employee_id}
+        )

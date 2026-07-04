@@ -7,12 +7,14 @@ from app.core.logging import logger
 from app.api.health import router as health_router
 from app.api.employee import router as employee_router
 from app.api import resume
+from pydantic import ValidationError
 
 from app.middleware.request_logger import RequestLoggingMiddleware
 from app.middleware.error_handler import (
-    validation_exception_handler,
     http_exception_handler,
-    global_exception_handler,
+    validation_exception_handler,
+    pydantic_validation_exception_handler,
+    global_exception_handler
 )
 
 # ------------------------------------------------------------------
@@ -37,6 +39,10 @@ app.add_middleware(RequestLoggingMiddleware)
 app.add_exception_handler(
     RequestValidationError,
     validation_exception_handler,
+)
+app.add_exception_handler(
+    ValidationError,
+    pydantic_validation_exception_handler
 )
 
 app.add_exception_handler(

@@ -4,6 +4,9 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.schemas.response import APIResponse
 from app.services.resume_service import ResumeService
+from pathlib import Path
+from fastapi.responses import FileResponse
+from app.core.exceptions import ResourceNotFoundException
 
 router = APIRouter(
     prefix="/resumes",
@@ -46,4 +49,32 @@ def get_resume(
         success=True,
         message="Resume fetched successfully",
         data=resume
+    )
+
+
+@router.get("/{employee_id}/download")
+def download_resume(
+    employee_id: int,
+    db: Session = Depends(get_db)
+):
+    service = ResumeService(db)
+
+    resume = service.get_resume_file(employee_id)
+    print(resume)
+    if resume is None:
+        raise ResourceNotFoundException("Resume")
+
+    # ESIA project root
+    BASE_DIR = Path(__file__).resolve().parents[2]
+    print(BASE_DIR)
+    # Full absolute path
+    file_path = BASE_DIR / resume["file_path"]
+    print(file_path)
+    if not file_path.exists():
+        raise ResourceNotFoundException("Resume file")
+
+    return FileResponse(
+        path=str(file_path),
+        filename=resume["file_name"],
+        media_type="application/pdf"
     )

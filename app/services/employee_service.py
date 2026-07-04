@@ -1,5 +1,6 @@
 from app.repository.employee_repository import EmployeeRepository
 from app.core.exceptions import ResourceNotFoundException
+from app.schemas.employee_filter import EmployeeFilter
 
 
 class EmployeeService:
@@ -11,7 +12,7 @@ class EmployeeService:
         self,
         page: int,
         size: int,
-        search: str | None = None
+        filters: EmployeeFilter
     ):
         """
         Get paginated list of employees.
@@ -20,7 +21,7 @@ class EmployeeService:
         return self.repository.get_all(
             page,
             size,
-            search
+            filters
         )
 
     def get_by_id(self, employee_id: int):
@@ -33,3 +34,6 @@ class EmployeeService:
             raise ResourceNotFoundException("Employee")
 
         return employee
+    
+    def get_resume_file(self, employee_id: int):
+        return self.repository.get_resume_file(employee_id)

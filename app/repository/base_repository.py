@@ -14,7 +14,7 @@ class BaseRepository:
 
     def fetch_all(self, sql, params=None):
 
-        result = self.db.execute(sql, params or {})
+        result = self.db.execute(text(sql), params or {})
 
         return [
             dict(row)
@@ -23,7 +23,7 @@ class BaseRepository:
 
     def fetch_one(self, sql, params=None):
 
-        result = self.db.execute(sql, params or {})
+        result = self.db.execute(text(sql), params or {})
 
         row = result.mappings().first()
 

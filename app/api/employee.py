@@ -4,6 +4,8 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.services.employee_service import EmployeeService
 from app.schemas.response import APIResponse
+from app.schemas.employee_filter import EmployeeFilter
+from app.dependencies.employee_filters import get_employee_filters
 
 router = APIRouter(
     prefix="/employees",
@@ -15,12 +17,12 @@ router = APIRouter(
 def get_employees(
     page: int = Query(1, ge=1),
     size: int = Query(20, ge=1, le=100),
-    search: str | None = Query(None),
+    filters: EmployeeFilter = Depends(get_employee_filters),
     db: Session = Depends(get_db)
 ):
     service = EmployeeService(db)
 
-    result = service.get_all(page, size, search)
+    result = service.get_all(page, size, filters)
     #print(search)
     return APIResponse(
         success=True,
