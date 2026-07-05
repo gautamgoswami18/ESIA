@@ -7,6 +7,7 @@ from app.services.resume_service import ResumeService
 from pathlib import Path
 from fastapi.responses import FileResponse
 from app.core.exceptions import ResourceNotFoundException
+from app.ai.embedding_generator import EmbeddingGenerator
 
 router = APIRouter(
     prefix="/resumes",
@@ -94,3 +95,25 @@ def parse_resume(
         message="Resume parsed successfully.",
         data=result
     )
+
+@router.post("/{employee_id}/embedding")
+def generate_embedding(
+    employee_id: int,
+    db: Session = Depends(get_db)
+):
+    service = ResumeService(db)
+
+    try:
+        result = service.generate_embedding(employee_id)
+
+        return APIResponse(
+            success=True,
+            message="Embedding generated successfully.",
+            data=result
+        )
+
+    except ValueError as ex:
+        raise HTTPException(
+            status_code=400,
+            detail=str(ex)
+        )

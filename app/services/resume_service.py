@@ -1,13 +1,16 @@
 from sqlalchemy.orm import Session
 
 from app.repository.resume_repository import ResumeRepository
-from app.utils.resume_parser import ResumeParser
+from app.ai.resume_parser import ResumeParser
+from app.ai.embedding_generator import EmbeddingGenerator
 
 
 class ResumeService:
 
     def __init__(self, db: Session):
         self.repository = ResumeRepository(db)
+        self.parser = ResumeParser()
+        self.embedding_generator = EmbeddingGenerator()
 
     def get_all(self):
         return self.repository.get_all()
@@ -42,4 +45,28 @@ class ResumeService:
             "file_name": resume["file_name"],
             "pages_parsed": len(resume_text.split("\n")),
             "status": "Completed"
-        }    
+        } 
+
+    def generate_embedding(self, employee_id: int):
+
+        resume = self.repository.get_resume_file(employee_id)
+
+        if not resume:
+            return None
+
+        resume_text = resume.get("resume_text")
+
+        if not resume_text:
+            raise ValueError(
+                "Resume has not been parsed yet."
+            )
+
+        embedding = self.embedding_generator.generate_embedding(
+            resume_text
+        )
+
+        return {
+            "employee_id": employee_id,
+            "dimensions": len(embedding),
+            "embedding": embedding
+        }     

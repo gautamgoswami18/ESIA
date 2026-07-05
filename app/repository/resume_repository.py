@@ -79,7 +79,8 @@ class ResumeRepository(BaseRepository):
         sql = """
             SELECT
                 file_name,
-                file_path
+                file_path,
+                resume_text
             FROM esia.resume_metadata
             WHERE employee_id = :employee_id
         """
