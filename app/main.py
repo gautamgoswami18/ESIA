@@ -54,6 +54,28 @@ app.add_exception_handler(
     Exception,
     global_exception_handler,
 )
+async def global_exception_handler(
+    request: Request,
+    exc: Exception,
+):
+    print("=" * 80)
+    print(type(exc))
+    print(repr(exc))
+    print("=" * 80)
+
+    logger.exception(
+        f"Unhandled exception while processing "
+        f"{request.method} {request.url.path}"
+    )
+
+    return JSONResponse(
+        status_code=500,
+        content=APIResponse(
+            success=False,
+            message="Internal Server Error",
+            data=None,
+        ).model_dump()
+    )
 
 # ------------------------------------------------------------------
 # Routers

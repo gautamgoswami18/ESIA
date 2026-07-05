@@ -60,16 +60,16 @@ def download_resume(
     service = ResumeService(db)
 
     resume = service.get_resume_file(employee_id)
-    print(resume)
+    
     if resume is None:
         raise ResourceNotFoundException("Resume")
 
     # ESIA project root
     BASE_DIR = Path(__file__).resolve().parents[2]
-    print(BASE_DIR)
+    
     # Full absolute path
     file_path = BASE_DIR / resume["file_path"]
-    print(file_path)
+    
     if not file_path.exists():
         raise ResourceNotFoundException("Resume file")
 
@@ -77,4 +77,20 @@ def download_resume(
         path=str(file_path),
         filename=resume["file_name"],
         media_type="application/pdf"
+    )
+
+
+@router.post("/{employee_id}/parse")
+def parse_resume(
+    employee_id: int,
+    db: Session = Depends(get_db)
+):
+    service = ResumeService(db)
+
+    result = service.parse_resume(employee_id)
+
+    return APIResponse(
+        success=True,
+        message="Resume parsed successfully.",
+        data=result
     )

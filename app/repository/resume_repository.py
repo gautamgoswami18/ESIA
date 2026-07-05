@@ -88,3 +88,24 @@ class ResumeRepository(BaseRepository):
             sql,
             {"employee_id": employee_id}
         )
+    
+    def update_resume_text(
+    self,
+    employee_id: int,
+    resume_text: str
+    ):
+    
+        sql = """
+            UPDATE esia.resume_metadata
+            SET
+                resume_text = :resume_text
+            WHERE employee_id = :employee_id
+        """
+    
+        self.execute(
+            text(sql),
+            {
+                "employee_id": employee_id,
+                "resume_text": resume_text
+            }
+        )

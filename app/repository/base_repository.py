@@ -30,7 +30,7 @@ class BaseRepository:
         return dict(row) if row else None
 
     def fetch_scalar(self, sql, params=None):
-        return self.db.execute(sql, params or {}).scalar()
+        return self.db.execute(text(sql), params or {}).scalar()
 
 
     def fetch_paginated(self, sql, count_sql, params=None):

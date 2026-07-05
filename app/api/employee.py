@@ -23,7 +23,7 @@ def get_employees(
     service = EmployeeService(db)
 
     result = service.get_all(page, size, filters)
-    #print(search)
+    
     return APIResponse(
         success=True,
         message="Employees fetched successfully",

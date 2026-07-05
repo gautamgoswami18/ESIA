@@ -188,8 +188,7 @@ class EmployeeRepository(BaseRepository):
             if filters.sort_order.lower() == "desc"
             else "ASC"
         )
-        print("sort_by =", filters.sort_by)
-        print("sort_order =", filters.sort_order)
+
         # ---------------------------------------
         # DATA QUERY
         # ---------------------------------------

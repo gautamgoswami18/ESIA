@@ -70,11 +70,7 @@ async def global_exception_handler(
     request: Request,
     exc: Exception,
 ):
-    print("\n" + "=" * 80)
-    print("Exception Type :", type(exc))
-    print("Exception Class:", exc.__class__)
-    print("Exception Repr :", repr(exc))
-    print("=" * 80 + "\n")
+  
     raise exc
     logger.exception(
         f"Unhandled exception while processing "
