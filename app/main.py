@@ -8,6 +8,7 @@ from app.api.health import router as health_router
 from app.api.employee import router as employee_router
 from app.api import resume
 from pydantic import ValidationError
+from app.api import search
 
 from app.middleware.request_logger import RequestLoggingMiddleware
 from app.middleware.error_handler import (
@@ -84,7 +85,7 @@ async def global_exception_handler(
 app.include_router(health_router)
 app.include_router(employee_router)
 app.include_router(resume.router)
-
+app.include_router(search.router)
 # ------------------------------------------------------------------
 # APIs
 # ------------------------------------------------------------------

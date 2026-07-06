@@ -89,13 +89,12 @@ def parse_resume(
     service = ResumeService(db)
 
     result = service.parse_resume(employee_id)
-
     return APIResponse(
-        success=True,
-        message="Resume parsed successfully.",
-        data=result
-    )
-
+            success=True,
+            message="Resume parsed successfully.",
+            data=result
+        )
+    
 @router.post("/{employee_id}/embedding")
 def generate_embedding(
     employee_id: int,
@@ -117,3 +116,21 @@ def generate_embedding(
             status_code=400,
             detail=str(ex)
         )
+    
+@router.post(
+    "/process-all",
+    summary="Parse and Generate Embeddings for All Resumes"
+)
+def process_all_resumes(
+    db: Session = Depends(get_db)
+):
+
+    service = ResumeService(db)
+
+    result = service.process_all_resumes()
+
+    return {
+        "success": True,
+        "message": "Resume processing completed successfully.",
+        "data": result
+    }

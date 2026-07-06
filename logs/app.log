@@ -6410,3 +6410,92 @@ when serializing dict item 'data'
 2026-07-06 00:10:28 | INFO | app.middleware.request_logger:dispatch:18 | GET /openapi.json Status=200 Time=139.07ms
 2026-07-06 00:14:57 | INFO | app.middleware.request_logger:dispatch:18 | POST /resumes/1035/embedding Status=200 Time=247082.94ms
 2026-07-06 00:16:49 | INFO | app.middleware.request_logger:dispatch:18 | POST /resumes/1011/parse Status=200 Time=25192.86ms
+2026-07-06 14:19:04 | INFO | app.main:startup:105 | ======================================================================
+2026-07-06 14:19:04 | INFO | app.main:startup:106 | ESIA Application Started
+2026-07-06 14:19:04 | INFO | app.main:startup:107 | ======================================================================
+2026-07-06 22:28:14 | INFO | app.main:shutdown:116 | ======================================================================
+2026-07-06 22:28:14 | INFO | app.main:shutdown:117 | ESIA Application Stopped
+2026-07-06 22:28:14 | INFO | app.main:shutdown:118 | ======================================================================
+2026-07-06 22:57:56 | INFO | app.main:startup:105 | ======================================================================
+2026-07-06 22:57:56 | INFO | app.main:startup:106 | ESIA Application Started
+2026-07-06 22:57:56 | INFO | app.main:startup:107 | ======================================================================
+2026-07-06 22:58:59 | INFO | app.middleware.request_logger:dispatch:18 | GET /docs Status=200 Time=0.8ms
+2026-07-06 22:58:59 | INFO | app.middleware.request_logger:dispatch:18 | GET /openapi.json Status=200 Time=27.29ms
+2026-07-06 23:07:52 | INFO | app.main:shutdown:116 | ======================================================================
+2026-07-06 23:07:52 | INFO | app.main:shutdown:117 | ESIA Application Stopped
+2026-07-06 23:07:52 | INFO | app.main:shutdown:118 | ======================================================================
+2026-07-06 23:08:24 | INFO | app.main:startup:105 | ======================================================================
+2026-07-06 23:08:24 | INFO | app.main:startup:106 | ESIA Application Started
+2026-07-06 23:08:24 | INFO | app.main:startup:107 | ======================================================================
+2026-07-06 23:08:45 | INFO | app.middleware.request_logger:dispatch:18 | GET /docs Status=200 Time=0.97ms
+2026-07-06 23:08:45 | INFO | app.middleware.request_logger:dispatch:18 | GET /openapi.json Status=200 Time=48.52ms
+2026-07-06 23:09:23 | INFO | app.middleware.request_logger:dispatch:18 | POST /resumes/1001/parse Status=200 Time=5038.68ms
+2026-07-06 23:12:44 | INFO | app.main:shutdown:116 | ======================================================================
+2026-07-06 23:12:44 | INFO | app.main:shutdown:117 | ESIA Application Stopped
+2026-07-06 23:12:44 | INFO | app.main:shutdown:118 | ======================================================================
+2026-07-06 23:13:14 | INFO | app.main:startup:105 | ======================================================================
+2026-07-06 23:13:14 | INFO | app.main:startup:106 | ESIA Application Started
+2026-07-06 23:13:14 | INFO | app.main:startup:107 | ======================================================================
+2026-07-06 23:24:17 | INFO | app.main:shutdown:116 | ======================================================================
+2026-07-06 23:24:17 | INFO | app.main:shutdown:117 | ESIA Application Stopped
+2026-07-06 23:24:17 | INFO | app.main:shutdown:118 | ======================================================================
+2026-07-06 23:25:04 | INFO | app.main:startup:105 | ======================================================================
+2026-07-06 23:25:04 | INFO | app.main:startup:106 | ESIA Application Started
+2026-07-06 23:25:04 | INFO | app.main:startup:107 | ======================================================================
+2026-07-06 23:38:33 | INFO | app.main:shutdown:116 | ======================================================================
+2026-07-06 23:38:33 | INFO | app.main:shutdown:117 | ESIA Application Stopped
+2026-07-06 23:38:33 | INFO | app.main:shutdown:118 | ======================================================================
+2026-07-06 23:39:07 | INFO | app.main:startup:105 | ======================================================================
+2026-07-06 23:39:07 | INFO | app.main:startup:106 | ESIA Application Started
+2026-07-06 23:39:07 | INFO | app.main:startup:107 | ======================================================================
+2026-07-06 23:39:07 | INFO | app.main:shutdown:116 | ======================================================================
+2026-07-06 23:39:07 | INFO | app.main:shutdown:117 | ESIA Application Stopped
+2026-07-06 23:39:07 | INFO | app.main:shutdown:118 | ======================================================================
+2026-07-06 23:40:01 | INFO | app.main:startup:105 | ======================================================================
+2026-07-06 23:40:01 | INFO | app.main:startup:106 | ESIA Application Started
+2026-07-06 23:40:01 | INFO | app.main:startup:107 | ======================================================================
+2026-07-06 23:40:37 | INFO | app.middleware.request_logger:dispatch:18 | GET /docs Status=200 Time=2.67ms
+2026-07-06 23:40:38 | INFO | app.middleware.request_logger:dispatch:18 | GET /openapi.json Status=200 Time=54.49ms
+2026-07-06 23:41:17 | INFO | app.middleware.request_logger:dispatch:18 | POST /resumes/process-all Status=200 Time=23097.09ms
+2026-07-06 23:44:15 | INFO | app.middleware.request_logger:dispatch:18 | POST /resumes/1001/embedding Status=200 Time=5511.44ms
+2026-07-07 00:09:22 | INFO | app.main:shutdown:116 | ======================================================================
+2026-07-07 00:09:22 | INFO | app.main:shutdown:117 | ESIA Application Stopped
+2026-07-07 00:09:22 | INFO | app.main:shutdown:118 | ======================================================================
+2026-07-07 00:09:51 | INFO | app.main:startup:105 | ======================================================================
+2026-07-07 00:09:51 | INFO | app.main:startup:106 | ESIA Application Started
+2026-07-07 00:09:51 | INFO | app.main:startup:107 | ======================================================================
+2026-07-07 00:11:43 | INFO | app.main:shutdown:116 | ======================================================================
+2026-07-07 00:11:43 | INFO | app.main:shutdown:117 | ESIA Application Stopped
+2026-07-07 00:11:43 | INFO | app.main:shutdown:118 | ======================================================================
+2026-07-07 00:12:08 | INFO | app.main:startup:105 | ======================================================================
+2026-07-07 00:12:08 | INFO | app.main:startup:106 | ESIA Application Started
+2026-07-07 00:12:08 | INFO | app.main:startup:107 | ======================================================================
+2026-07-07 00:12:09 | INFO | app.main:shutdown:116 | ======================================================================
+2026-07-07 00:12:09 | INFO | app.main:shutdown:117 | ESIA Application Stopped
+2026-07-07 00:12:09 | INFO | app.main:shutdown:118 | ======================================================================
+2026-07-07 00:17:01 | INFO | app.main:startup:105 | ======================================================================
+2026-07-07 00:17:01 | INFO | app.main:startup:106 | ESIA Application Started
+2026-07-07 00:17:01 | INFO | app.main:startup:107 | ======================================================================
+2026-07-07 00:17:09 | INFO | app.middleware.request_logger:dispatch:18 | GET /docs Status=200 Time=8.38ms
+2026-07-07 00:17:10 | INFO | app.middleware.request_logger:dispatch:18 | GET /openapi.json Status=200 Time=244.27ms
+2026-07-07 00:23:09 | INFO | app.middleware.request_logger:dispatch:18 | POST /resumes/1100/embedding Status=200 Time=329819.77ms
+2026-07-07 00:52:40 | INFO | app.main:startup:105 | ======================================================================
+2026-07-07 00:52:40 | INFO | app.main:startup:106 | ESIA Application Started
+2026-07-07 00:52:40 | INFO | app.main:startup:107 | ======================================================================
+2026-07-07 00:54:08 | INFO | app.middleware.request_logger:dispatch:18 | GET /docs Status=200 Time=0.91ms
+2026-07-07 00:54:08 | INFO | app.middleware.request_logger:dispatch:18 | GET /openapi.json Status=200 Time=48.53ms
+2026-07-07 01:03:29 | INFO | app.middleware.request_logger:dispatch:18 | POST /resumes/process-all Status=200 Time=542702.17ms
+2026-07-07 01:04:22 | INFO | app.main:shutdown:116 | ======================================================================
+2026-07-07 01:04:22 | INFO | app.main:shutdown:117 | ESIA Application Stopped
+2026-07-07 01:04:22 | INFO | app.main:shutdown:118 | ======================================================================
+2026-07-07 01:24:50 | INFO | app.main:startup:106 | ======================================================================
+2026-07-07 01:24:50 | INFO | app.main:startup:107 | ESIA Application Started
+2026-07-07 01:24:50 | INFO | app.main:startup:108 | ======================================================================
+2026-07-07 01:25:24 | INFO | app.middleware.request_logger:dispatch:18 | GET /docs Status=200 Time=0.64ms
+2026-07-07 01:25:24 | INFO | app.middleware.request_logger:dispatch:18 | GET /openapi.json Status=200 Time=20.65ms
+2026-07-07 01:25:47 | INFO | app.middleware.request_logger:dispatch:18 | POST /search/resumes Status=200 Time=5076.72ms
+2026-07-07 01:26:35 | INFO | app.middleware.request_logger:dispatch:18 | POST /search/resumes Status=200 Time=4381.6ms
+2026-07-07 01:27:29 | INFO | app.middleware.request_logger:dispatch:18 | POST /search/resumes Status=200 Time=4455.16ms
+2026-07-07 01:30:57 | INFO | app.main:shutdown:117 | ======================================================================
+2026-07-07 01:30:57 | INFO | app.main:shutdown:118 | ESIA Application Stopped
+2026-07-07 01:30:57 | INFO | app.main:shutdown:119 | ======================================================================

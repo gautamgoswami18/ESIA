@@ -110,3 +110,14 @@ class ResumeRepository(BaseRepository):
                 "resume_text": resume_text
             }
         )
+
+    def get_all_resume_employees(self):
+
+        sql = """
+            SELECT
+                employee_id
+            FROM esia.resume_metadata
+            ORDER BY employee_id
+        """
+    
+        return self.fetch_all(sql)    
