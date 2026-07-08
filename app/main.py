@@ -9,7 +9,9 @@ from app.api.employee import router as employee_router
 from app.api import resume
 from pydantic import ValidationError
 from app.api import search
-
+from app.api.ai import router as ai_router
+from app.api import esira
+from app.api import dashboard
 from app.middleware.request_logger import RequestLoggingMiddleware
 from app.middleware.error_handler import (
     http_exception_handler,
@@ -79,13 +81,23 @@ async def global_exception_handler(
     )
 
 # ------------------------------------------------------------------
+# Dashboard
+# ------------------------------------------------------------------
+
+app.include_router(dashboard.router)
+# ------------------------------------------------------------------
 # Routers
 # ------------------------------------------------------------------
 
-app.include_router(health_router)
+app.add_middleware(RequestLoggingMiddleware)
+app.include_router(esira.router)
 app.include_router(employee_router)
 app.include_router(resume.router)
 app.include_router(search.router)
+app.include_router(ai_router)
+app.include_router(health_router)
+
+
 # ------------------------------------------------------------------
 # APIs
 # ------------------------------------------------------------------

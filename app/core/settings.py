@@ -15,9 +15,10 @@ class Settings(BaseSettings):
     DB_SCHEMA: str
 
     LOG_LEVEL: str
-        
+    GOOGLE_API_KEY: str    
     class Config:
         env_file = ".env"
     
 settings = Settings()
+   
    

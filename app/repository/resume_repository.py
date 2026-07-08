@@ -74,7 +74,7 @@ class ResumeRepository(BaseRepository):
             {"employee_id": employee_id}
         )
     
-    def get_resume_file(self, employee_id: int):
+    def get_resume_metadata(self, employee_id: int):
         
         sql = """
             SELECT
@@ -119,5 +119,5 @@ class ResumeRepository(BaseRepository):
             FROM esia.resume_metadata
             ORDER BY employee_id
         """
-    
+
         return self.fetch_all(sql)    

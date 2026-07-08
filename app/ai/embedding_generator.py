@@ -2,23 +2,25 @@ from sentence_transformers import SentenceTransformer
 
 
 class EmbeddingGenerator:
-    """
-    Generates vector embeddings from resume text.
-    """
 
-    def __init__(self):
-        self.model = SentenceTransformer(
-            "sentence-transformers/all-MiniLM-L6-v2"
-        )
+    _model = None
 
-    def generate_embedding(self, text: str) -> list[float]:
-        """
-        Convert text into embedding vector.
-        """
+    @classmethod
+    def get_model(cls):
 
-        if not text:
-            return []
+        if cls._model is None:
+            cls._model = SentenceTransformer(
+                "sentence-transformers/all-MiniLM-L6-v2"
+            )
 
-        embedding = self.model.encode(text)
+        return cls._model
 
-        return embedding.tolist()
+    @classmethod
+    def generate_embedding(
+        cls,
+        text: str
+    ) -> list[float]:
+
+        model = cls.get_model()
+
+        return model.encode(text).tolist()

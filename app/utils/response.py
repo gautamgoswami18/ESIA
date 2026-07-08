@@ -1,4 +1,4 @@
-from app.schemas.api_response import ApiResponse, PaginatedResponse
+from app.schemas.ai_response import ApiResponse, PaginatedResponse
 
 
 def success_response(data=None, message="Success"):

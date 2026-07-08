@@ -5,7 +5,9 @@ from app.database import get_db
 from app.services.employee_service import EmployeeService
 from app.schemas.response import APIResponse
 from app.schemas.employee_filter import EmployeeFilter
+from app.schemas.employee_profile_schema import EmployeeProfileResponse
 from app.dependencies.employee_filters import get_employee_filters
+from app.services.employee_profile_service import EmployeeProfileService
 
 router = APIRouter(
     prefix="/employees",
@@ -45,3 +47,16 @@ def get_employee(
         message="Employee fetched successfully",
         data=employee
     )
+
+@router.get(
+    "/{employee_id}/profile",
+    response_model=EmployeeProfileResponse
+)
+def get_employee_profile(
+    employee_id: int,
+    db: Session = Depends(get_db)
+):
+
+    service = EmployeeProfileService(db)
+
+    return service.get_employee_profile(employee_id)

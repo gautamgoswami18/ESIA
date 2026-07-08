@@ -20,12 +20,12 @@ class ResumeService:
         return self.repository.get_by_employee_id(employee_id)
     
     def get_resume_file(self, employee_id: int):
-        return self.repository.get_resume_file(employee_id)
+        return self.repository.get_resume_metadata(employee_id)
     
     def parse_resume(self, employee_id: int):
 
         # Step 1: Fetch resume metadata
-        resume = self.repository.get_resume_file(employee_id)
+        resume = self.repository.get_resume_metadata(employee_id)
     
         if not resume:
             raise ValueError("Resume not found")
@@ -51,36 +51,36 @@ class ResumeService:
     def generate_embedding(self, employee_id: int):
 
         # Fetch resume details
-        resume = self.repository.get_resume_file(employee_id)
-    
+        resume = self.repository.get_resume_metadata(employee_id)
+
         if not resume:
             raise ValueError(
                 f"Resume not found for employee {employee_id}"
             )
-    
+
         resume_text = resume.get("resume_text")
-    
+
         if not resume_text:
             raise ValueError(
                 "Resume has not been parsed yet."
             )
-    
+
         # Generate embedding
         embedding_generator = EmbeddingGenerator()
-    
+
         embedding = embedding_generator.generate_embedding(
             resume_text
         )
-    
+
         # Store into ChromaDB
         chroma = ChromaService()
-    
+
         chroma.add_resume(
             employee_id=employee_id,
             resume_text=resume_text,
             embedding=embedding
         )
-    
+
         return {
             "employee_id": employee_id,
             "embedding_dimension": len(embedding),
