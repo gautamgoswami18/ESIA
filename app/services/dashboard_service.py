@@ -8,7 +8,7 @@ class DashboardService:
         self.dashboard_repo = DashboardRepository(db)
 
     def get_summary(self):
-
+        print("Calling Summary API")
         return self.dashboard_repo.get_summary()
 
     def get_top_skills(self):

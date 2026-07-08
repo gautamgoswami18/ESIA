@@ -1,5 +1,5 @@
 API_BASE_URL = "http://localhost:8000"
 APP_NAME = "ESIRA"
-
+APP_SUBTITLE = "Employee Skill Intelligence & Recruitment Assistant"
 PRIMARY_COLOR = "#2563EB"
 SECONDARY_COLOR = "#10B981"
