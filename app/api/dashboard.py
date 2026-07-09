@@ -2,12 +2,21 @@ from fastapi import APIRouter, Depends
 from app.core.dependencies import get_dashboard_service
 
 from app.services.dashboard_service import DashboardService
+from app.schemas.dashboard_schema import DashboardResponse
 
 router = APIRouter(
     prefix="/dashboard",
     tags=["Dashboard"]
 )
-
+@router.get(
+    "",
+    response_model=DashboardResponse
+)
+def get_dashboard(
+    service: DashboardService = Depends(get_dashboard_service)
+ ):
+    return service.get_dashboard()
+"""
 @router.get("/summary")
 def summary(
    service: DashboardService = Depends(get_dashboard_service)
@@ -31,3 +40,5 @@ def certifications(
    service: DashboardService = Depends(get_dashboard_service)
 ):
     return service.get_certification_stats()
+
+    """

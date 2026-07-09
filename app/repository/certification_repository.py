@@ -10,20 +10,22 @@ class CertificationRepository(BaseRepository):
         super().__init__(db)
 
 
-def get_employee_certifications(self, employee_id: int):
+    def get_employee_certifications(self, employee_id: int):
 
-    sql = """
-        SELECT
-            certification_name,
-            issuing_organization,
-            issue_date,
-            expiry_date
-        FROM esia.employee_certifications
-        WHERE employee_id = :employee_id
-        ORDER BY issue_date DESC
-    """
+        sql = """
+            SELECT
+                c.certification_name,
+				c.vendor,
+                ec.issue_date,
+                ec.expiry_date,
+				ec.certification_status
+            FROM esia.employee_certifications ec Inner JOIN esia.certifications c
+			ON c.certification_id=ec.certification_id
+            WHERE employee_id = :employee_id
+            ORDER BY issue_date DESC
+        """
 
-    return self.fetch_all(
-        sql,
-        {"employee_id": employee_id}
-    )
+        return self.fetch_all(
+            sql,
+            {"employee_id": employee_id}
+        )

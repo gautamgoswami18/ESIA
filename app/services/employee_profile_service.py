@@ -33,14 +33,12 @@ class EmployeeProfileService:
 
         if employee is None:
             return None
-
+        
         skills = self.skill_repo.get_employee_skills(employee_id)
 
         projects = self.project_repo.get_employee_projects(employee_id)
 
-        certifications = self.certification_repo.get_employee_certifications(
-            employee_id
-        )
+        certifications = self.certification_repo.get_employee_certifications(employee_id)
 
         resume = self.resume_repo.get_resume_metadata(employee_id)
 

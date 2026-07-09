@@ -22,3 +22,17 @@ class DashboardService:
     def get_certification_stats(self):
 
         return self.dashboard_repo.get_certification_stats()
+    
+    def get_dashboard(self):
+
+        return {
+
+            "summary": self.dashboard_repo.get_summary(),
+
+            "top_skills": self.get_top_skills(),
+
+            "experience_distribution": self.get_experience_distribution(),
+
+            "certifications": self.get_certification_stats()
+
+        }

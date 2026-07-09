@@ -3,6 +3,13 @@ import streamlit as st
 from config import APP_NAME
 from config import APP_SUBTITLE
 
+from pathlib import Path
+
+BASE_DIR = Path(__file__).parent
+
+css_file = BASE_DIR / "assets" / "styles.css"
+
+css = css_file.read_text(encoding="utf-8")
 
 st.set_page_config(
 

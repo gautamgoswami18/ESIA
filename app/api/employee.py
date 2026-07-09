@@ -50,13 +50,18 @@ def get_employee(
 
 @router.get(
     "/{employee_id}/profile",
-    response_model=EmployeeProfileResponse
+    response_model=APIResponse
 )
 def get_employee_profile(
     employee_id: int,
     db: Session = Depends(get_db)
 ):
-
     service = EmployeeProfileService(db)
 
-    return service.get_employee_profile(employee_id)
+    profile = service.get_employee_profile(employee_id)
+
+    return APIResponse(
+        success=True,
+        message="Employee profile fetched successfully",
+        data=profile
+    )
