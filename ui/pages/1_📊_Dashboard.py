@@ -1,58 +1,45 @@
 import streamlit as st
 
 from services.dashboard_service import DashboardService
-from concurrent.futures import ThreadPoolExecutor
 
+from components.header import render_header
 from components.metric_card import render_metric_cards
 from components.charts import (
     render_top_skills,
     render_experience
 )
-from components.tables import (
-    render_certifications
-)
+from components.tables import render_certifications
 
 service = DashboardService()
 
-st.title("📊 Dashboard")
-
-if st.button("🔄 Refresh Dashboard"):
-    st.rerun()
+render_header()
 
 with st.spinner("Loading Dashboard..."):
 
-    with ThreadPoolExecutor() as executor:
+    dashboard = service.get_dashboard()
 
-        summary = executor.submit(service.get_summary)
-
-        skills = executor.submit(service.get_top_skills)
-
-        experience = executor.submit(service.get_experience_distribution)
-
-        certifications = executor.submit(service.get_certifications)
-
-    summary = summary.result()
-
-    skills = skills.result()
-
-    experience = experience.result()
-
-    certifications = certifications.result()
-
-render_metric_cards(summary)
+render_metric_cards(
+    dashboard["summary"]
+)
 
 st.divider()
 
-col1, col2 = st.columns([2, 1])
+left, right = st.columns([2,1])
 
-with col1:
+with left:
 
-    render_top_skills(skills)
+    render_top_skills(
+        dashboard["top_skills"]
+    )
 
-with col2:
+with right:
 
-    render_experience(experience)
+    render_experience(
+        dashboard["experience_distribution"]
+    )
 
 st.divider()
 
-render_certifications(certifications)
+render_certifications(
+    dashboard["certifications"]
+)

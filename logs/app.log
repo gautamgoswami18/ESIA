@@ -7052,3 +7052,509 @@ when serializing dict item 'data'
 2026-07-09 01:01:12 | INFO | app.main:shutdown:129 | ======================================================================
 2026-07-09 01:01:12 | INFO | app.main:shutdown:130 | ESIA Application Stopped
 2026-07-09 01:01:12 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 12:33:43 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 12:33:43 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 12:33:43 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 12:33:56 | INFO | app.middleware.request_logger:dispatch:18 | GET / Status=200 Time=28.38ms
+2026-07-09 12:33:56 | INFO | app.middleware.request_logger:dispatch:18 | GET / Status=200 Time=30.23ms
+2026-07-09 12:33:56 | INFO | app.middleware.request_logger:dispatch:18 | GET /favicon.ico Status=404 Time=0.68ms
+2026-07-09 12:33:56 | INFO | app.middleware.request_logger:dispatch:18 | GET /favicon.ico Status=404 Time=1.61ms
+2026-07-09 12:34:03 | INFO | app.middleware.request_logger:dispatch:18 | GET /docs Status=200 Time=1.35ms
+2026-07-09 12:34:03 | INFO | app.middleware.request_logger:dispatch:18 | GET /docs Status=200 Time=3.3ms
+2026-07-09 12:34:03 | INFO | app.middleware.request_logger:dispatch:18 | GET /openapi.json Status=200 Time=55.93ms
+2026-07-09 12:34:03 | INFO | app.middleware.request_logger:dispatch:18 | GET /openapi.json Status=200 Time=56.88ms
+2026-07-09 12:36:58 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 12:36:58 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 12:36:58 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 12:37:14 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 12:37:14 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 12:37:14 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 12:37:38 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=269.01ms
+2026-07-09 12:37:38 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=270.35ms
+2026-07-09 12:43:02 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 12:43:02 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 12:43:02 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 12:43:19 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 12:43:19 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 12:43:19 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 12:43:19 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=143.74ms
+2026-07-09 12:43:19 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=144.88ms
+2026-07-09 12:43:58 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=4.87ms
+2026-07-09 12:43:58 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=5.58ms
+2026-07-09 12:44:14 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=9.87ms
+2026-07-09 12:44:14 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=11.11ms
+2026-07-09 13:30:47 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 13:30:47 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 13:30:47 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 13:31:45 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 13:31:45 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 13:31:45 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 13:51:13 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 13:51:13 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 13:51:13 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 13:51:32 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 13:51:32 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 13:51:32 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 14:06:04 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 14:06:04 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 14:06:04 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 14:06:21 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 14:06:21 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 14:06:21 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 14:06:21 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 14:06:21 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 14:06:21 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 14:06:38 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 14:06:38 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 14:06:38 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 14:06:46 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=168.24ms
+2026-07-09 14:06:46 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=169.5ms
+2026-07-09 14:07:07 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=5.49ms
+2026-07-09 14:07:07 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=6.38ms
+2026-07-09 14:07:14 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=13.13ms
+2026-07-09 14:07:14 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=14.52ms
+2026-07-09 14:07:33 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=8.13ms
+2026-07-09 14:07:33 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=9.04ms
+2026-07-09 14:07:36 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=10.54ms
+2026-07-09 14:07:36 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=11.29ms
+2026-07-09 14:07:37 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=8.36ms
+2026-07-09 14:07:37 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=9.26ms
+2026-07-09 14:11:18 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 14:11:18 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 14:11:18 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 14:11:34 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 14:11:34 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 14:11:34 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 14:13:30 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 14:13:30 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 14:13:30 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 14:13:46 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 14:13:46 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 14:13:46 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 14:17:58 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 14:17:58 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 14:17:58 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 14:18:57 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 14:18:57 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 14:18:57 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 14:18:58 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=464.89ms
+2026-07-09 14:18:58 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=470.98ms
+2026-07-09 14:20:38 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=19.45ms
+2026-07-09 14:20:38 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=22.99ms
+2026-07-09 14:21:11 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=21.9ms
+2026-07-09 14:21:11 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=24.11ms
+2026-07-09 14:25:24 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 14:25:24 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 14:25:24 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 14:26:24 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 14:26:24 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 14:26:24 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 14:28:27 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 14:28:27 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 14:28:27 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 14:29:18 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 14:29:18 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 14:29:18 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 15:08:07 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 15:08:07 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 15:08:07 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 15:09:09 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 15:09:09 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 15:09:09 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 15:09:09 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=324.88ms
+2026-07-09 15:09:09 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=327.37ms
+2026-07-09 15:09:36 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=20.78ms
+2026-07-09 15:09:36 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=22.97ms
+2026-07-09 15:09:40 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=22.19ms
+2026-07-09 15:09:40 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=27.69ms
+2026-07-09 15:09:47 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=16.69ms
+2026-07-09 15:09:47 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=20.95ms
+2026-07-09 15:09:54 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=21.92ms
+2026-07-09 15:09:54 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=23.95ms
+2026-07-09 15:10:06 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=17.1ms
+2026-07-09 15:10:06 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=19.14ms
+2026-07-09 15:55:39 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 15:55:39 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 15:55:39 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 15:56:25 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 15:56:25 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 15:56:25 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 15:56:38 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=398.97ms
+2026-07-09 15:56:38 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=402.03ms
+2026-07-09 16:02:09 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/1001 Status=200 Time=3243.69ms
+2026-07-09 16:02:09 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/1001 Status=200 Time=3245.44ms
+2026-07-09 16:11:50 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/ Status=200 Time=460.65ms
+2026-07-09 16:11:50 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/ Status=200 Time=464.13ms
+2026-07-09 16:30:19 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 16:30:19 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 16:30:19 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 16:31:49 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 16:31:49 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 16:31:49 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 16:47:23 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 16:47:23 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 16:47:23 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 16:47:51 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 16:47:51 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 16:47:51 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 16:50:19 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 16:50:19 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 16:50:19 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 16:53:36 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 16:53:36 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 16:53:36 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 16:53:51 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 16:53:51 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 16:53:51 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 16:57:01 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 16:57:01 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 16:57:01 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 16:57:19 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 16:57:19 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 16:57:19 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 17:00:15 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 17:00:15 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 17:00:15 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 17:00:31 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 17:00:31 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 17:00:31 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 17:04:08 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 17:04:08 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 17:04:08 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 17:04:25 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 17:04:25 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 17:04:25 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 17:05:35 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 17:05:35 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 17:05:35 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 17:11:57 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 17:11:57 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 17:11:57 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 17:12:05 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=259.32ms
+2026-07-09 17:12:05 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=260.97ms
+2026-07-09 17:12:31 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=7.91ms
+2026-07-09 17:12:31 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=9.02ms
+2026-07-09 17:13:13 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 17:13:13 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 17:13:13 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 17:13:36 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 17:13:36 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 17:13:36 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 17:13:37 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=145.97ms
+2026-07-09 17:13:37 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=146.9ms
+2026-07-09 17:23:32 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 17:23:32 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 17:23:32 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 17:23:50 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 17:23:50 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 17:23:50 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 17:25:37 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 17:25:37 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 17:25:37 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 17:26:00 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 17:26:00 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 17:26:00 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 18:08:40 | INFO | app.middleware.request_logger:dispatch:18 | GET /ai/resume-summary/1001 Status=200 Time=15204.5ms
+2026-07-09 18:08:40 | INFO | app.middleware.request_logger:dispatch:18 | GET /ai/resume-summary/1001 Status=200 Time=15210.1ms
+2026-07-09 18:16:48 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/1001 Status=200 Time=356.42ms
+2026-07-09 18:16:48 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/1001 Status=200 Time=360.1ms
+2026-07-09 18:18:33 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 18:18:33 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 18:18:33 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 18:19:13 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 18:19:13 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 18:19:13 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 18:26:51 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 18:26:51 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 18:26:51 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 18:27:44 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 18:27:44 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 18:27:44 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 18:40:19 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 18:40:19 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 18:40:19 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 18:40:59 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 18:40:59 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 18:40:59 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 18:40:59 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 18:40:59 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 18:40:59 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 18:41:39 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 18:41:39 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 18:41:39 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 18:41:39 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 18:41:39 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 18:41:39 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 18:42:10 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 18:42:10 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 18:42:10 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 18:50:05 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 18:50:05 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 18:50:05 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 18:50:43 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 18:50:43 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 18:50:43 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 18:55:57 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 18:55:57 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 18:55:57 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 18:56:34 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 18:56:34 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 18:56:34 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 19:01:12 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 19:01:12 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 19:01:12 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 19:01:39 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 19:01:39 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 19:01:39 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 19:02:48 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 19:02:48 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 19:02:48 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 19:03:23 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 19:03:23 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 19:03:23 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 19:04:58 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 19:04:58 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 19:04:58 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 19:05:24 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 19:05:24 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 19:05:24 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 19:07:01 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 19:07:01 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 19:07:01 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 19:08:56 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 19:08:56 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 19:08:56 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 19:09:13 | INFO | app.middleware.request_logger:dispatch:18 | GET /docs Status=200 Time=12.94ms
+2026-07-09 19:09:13 | INFO | app.middleware.request_logger:dispatch:18 | GET /docs Status=200 Time=22.23ms
+2026-07-09 19:09:13 | INFO | app.middleware.request_logger:dispatch:18 | GET /openapi.json Status=200 Time=305.49ms
+2026-07-09 19:09:13 | INFO | app.middleware.request_logger:dispatch:18 | GET /openapi.json Status=200 Time=310.45ms
+2026-07-09 19:17:23 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 19:17:23 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 19:17:23 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 19:22:27 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 19:22:27 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 19:22:27 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 19:22:59 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 19:22:59 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 19:22:59 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 20:37:32 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 20:37:32 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 20:37:32 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 20:38:16 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 20:38:16 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 20:38:16 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 20:46:19 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 20:46:19 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 20:46:19 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 20:46:47 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 20:46:47 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 20:46:47 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 20:47:09 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/1002/profile Status=200 Time=12563.43ms
+2026-07-09 20:47:09 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/1002/profile Status=200 Time=12567.6ms
+2026-07-09 20:59:07 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 20:59:07 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 20:59:07 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 20:59:27 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 20:59:27 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 20:59:27 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 20:59:55 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 20:59:55 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 20:59:55 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 21:00:14 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 21:00:14 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 21:00:14 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 21:00:57 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 21:00:57 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 21:00:57 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 21:01:13 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 21:01:13 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 21:01:13 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 21:08:29 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 21:08:29 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 21:08:29 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 21:08:48 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 21:08:48 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 21:08:48 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 21:09:50 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 21:09:50 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 21:09:50 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 21:10:04 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 21:10:04 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 21:10:04 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 21:10:15 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 21:10:15 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 21:10:15 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 21:10:31 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 21:10:31 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 21:10:31 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 21:11:00 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=159.89ms
+2026-07-09 21:11:00 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=161.09ms
+2026-07-09 21:11:04 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees Status=307 Time=15.54ms
+2026-07-09 21:11:04 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees Status=307 Time=16.35ms
+2026-07-09 21:11:06 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/ Status=200 Time=1543.75ms
+2026-07-09 21:11:06 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/ Status=200 Time=1544.66ms
+2026-07-09 21:11:20 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees Status=307 Time=0.35ms
+2026-07-09 21:11:20 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees Status=307 Time=1.16ms
+2026-07-09 21:11:20 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/ Status=200 Time=164.66ms
+2026-07-09 21:11:20 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/ Status=200 Time=165.7ms
+2026-07-09 21:11:29 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/1001/profile Status=200 Time=8480.27ms
+2026-07-09 21:11:29 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/1001/profile Status=200 Time=8482.07ms
+2026-07-09 21:14:19 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=9.28ms
+2026-07-09 21:14:19 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=10.3ms
+2026-07-09 21:14:37 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=6.42ms
+2026-07-09 21:14:37 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=7.3ms
+2026-07-09 21:14:47 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/1001/profile Status=200 Time=8505.85ms
+2026-07-09 21:14:47 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/1001/profile Status=200 Time=8506.7ms
+2026-07-09 21:18:46 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 21:18:46 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 21:18:46 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 21:19:01 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 21:19:01 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 21:19:01 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 21:19:01 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 21:19:01 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 21:19:01 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 21:19:22 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 21:19:22 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 21:19:22 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 21:19:22 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees Status=307 Time=9.42ms
+2026-07-09 21:19:22 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees Status=307 Time=10.77ms
+2026-07-09 21:19:23 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/ Status=200 Time=1000.53ms
+2026-07-09 21:19:23 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/ Status=200 Time=1001.3ms
+2026-07-09 21:19:50 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees Status=307 Time=0.37ms
+2026-07-09 21:19:50 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees Status=307 Time=1.33ms
+2026-07-09 21:19:50 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/ Status=200 Time=117.18ms
+2026-07-09 21:19:50 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/ Status=200 Time=118.03ms
+2026-07-09 21:20:00 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/1001/profile Status=200 Time=10387.58ms
+2026-07-09 21:20:00 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/1001/profile Status=200 Time=10388.69ms
+2026-07-09 21:47:55 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees Status=307 Time=0.35ms
+2026-07-09 21:47:55 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees Status=307 Time=1.25ms
+2026-07-09 21:47:55 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/ Status=200 Time=123.36ms
+2026-07-09 21:47:55 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/ Status=200 Time=124.1ms
+2026-07-09 21:47:57 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees Status=307 Time=0.45ms
+2026-07-09 21:47:57 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees Status=307 Time=1.39ms
+2026-07-09 21:47:57 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/ Status=200 Time=110.54ms
+2026-07-09 21:47:57 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/ Status=200 Time=111.28ms
+2026-07-09 21:48:07 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/1001/profile Status=200 Time=10153.34ms
+2026-07-09 21:48:07 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/1001/profile Status=200 Time=10154.84ms
+2026-07-09 21:53:29 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 21:53:29 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 21:53:29 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 21:53:46 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 21:53:46 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 21:53:46 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 21:54:04 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 21:54:04 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 21:54:04 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 21:54:20 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 21:54:20 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 21:54:20 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 21:54:30 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees Status=307 Time=22.41ms
+2026-07-09 21:54:30 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees Status=307 Time=23.89ms
+2026-07-09 21:54:32 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/ Status=200 Time=1515.93ms
+2026-07-09 21:54:32 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/ Status=200 Time=1516.87ms
+2026-07-09 21:54:35 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees Status=307 Time=0.46ms
+2026-07-09 21:54:35 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees Status=307 Time=1.61ms
+2026-07-09 21:54:35 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/ Status=200 Time=140.45ms
+2026-07-09 21:54:35 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/ Status=200 Time=141.61ms
+2026-07-09 21:54:42 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/1002/profile Status=200 Time=6728.99ms
+2026-07-09 21:54:42 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/1002/profile Status=200 Time=6729.91ms
+2026-07-09 21:57:41 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 21:57:41 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 21:57:41 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 21:57:57 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 21:57:57 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 21:57:57 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 21:58:30 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=143.62ms
+2026-07-09 21:58:30 | INFO | app.middleware.request_logger:dispatch:18 | GET /dashboard Status=200 Time=144.67ms
+2026-07-09 21:58:34 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees Status=307 Time=15.26ms
+2026-07-09 21:58:34 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees Status=307 Time=16.64ms
+2026-07-09 21:58:35 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/ Status=200 Time=1434.87ms
+2026-07-09 21:58:35 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/ Status=200 Time=1435.91ms
+2026-07-09 21:58:48 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees Status=307 Time=0.58ms
+2026-07-09 21:58:48 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees Status=307 Time=1.33ms
+2026-07-09 21:58:48 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/ Status=200 Time=116.33ms
+2026-07-09 21:58:48 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/ Status=200 Time=117.41ms
+2026-07-09 21:58:57 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/1010/profile Status=200 Time=7892.63ms
+2026-07-09 21:58:57 | INFO | app.middleware.request_logger:dispatch:18 | GET /employees/1010/profile Status=200 Time=7894.41ms
+2026-07-09 22:05:27 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 22:05:27 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 22:05:27 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 22:05:44 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 22:05:44 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 22:05:44 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 22:08:27 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 22:08:27 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 22:08:27 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 22:08:41 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 22:08:41 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 22:08:41 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 22:09:50 | INFO | app.middleware.request_logger:dispatch:18 | POST /esira/esiraChat Status=200 Time=20206.75ms
+2026-07-09 22:09:50 | INFO | app.middleware.request_logger:dispatch:18 | POST /esira/esiraChat Status=200 Time=20208.0ms
+2026-07-09 22:17:49 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 22:17:49 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 22:17:49 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 22:18:08 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 22:18:08 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 22:18:08 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 22:18:44 | INFO | app.middleware.request_logger:dispatch:18 | POST /esira/esiraChat Status=200 Time=18349.96ms
+2026-07-09 22:18:44 | INFO | app.middleware.request_logger:dispatch:18 | POST /esira/esiraChat Status=200 Time=18351.25ms
+2026-07-09 22:25:15 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 22:25:15 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 22:25:15 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 22:25:36 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 22:25:36 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 22:25:36 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 22:25:36 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 22:25:36 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 22:25:36 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 22:26:03 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 22:26:03 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 22:26:03 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 22:26:03 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 22:26:03 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 22:26:03 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 22:26:21 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 22:26:21 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 22:26:21 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 22:28:09 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 22:28:09 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 22:28:09 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 22:28:28 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 22:28:28 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 22:28:28 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 22:38:20 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 22:38:20 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 22:38:20 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 22:38:38 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 22:38:38 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 22:38:38 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 22:38:39 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 22:38:39 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 22:38:39 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 22:39:00 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 22:39:00 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 22:39:00 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 22:51:31 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 22:51:31 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 22:51:31 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 22:51:48 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 22:51:48 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 22:51:48 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 22:52:52 | INFO | app.middleware.request_logger:dispatch:18 | POST /esira/esiraChat Status=200 Time=16123.82ms
+2026-07-09 22:52:52 | INFO | app.middleware.request_logger:dispatch:18 | POST /esira/esiraChat Status=200 Time=16125.33ms
+2026-07-09 22:58:50 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 22:58:50 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 22:58:50 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 22:59:36 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 22:59:36 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 22:59:36 | INFO | app.main:startup:120 | ======================================================================
+2026-07-09 23:35:50 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-09 23:35:50 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-09 23:35:50 | INFO | app.main:shutdown:131 | ======================================================================
+2026-07-09 23:37:11 | INFO | app.main:startup:118 | ======================================================================
+2026-07-09 23:37:11 | INFO | app.main:startup:119 | ESIA Application Started
+2026-07-09 23:37:11 | INFO | app.main:startup:120 | ======================================================================
+2026-07-10 00:56:10 | INFO | app.main:shutdown:129 | ======================================================================
+2026-07-10 00:56:10 | INFO | app.main:shutdown:130 | ESIA Application Stopped
+2026-07-10 00:56:10 | INFO | app.main:shutdown:131 | ======================================================================

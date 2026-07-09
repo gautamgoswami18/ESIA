@@ -3,9 +3,12 @@ import plotly.express as px
 import streamlit as st
 
 
-def render_top_skills(skills):
+ESIRA_BLUE = "#2563EB"
 
-    df = pd.DataFrame(skills)
+
+def render_top_skills(data):
+
+    df = pd.DataFrame(data)
 
     fig = px.bar(
         df,
@@ -13,12 +16,34 @@ def render_top_skills(skills):
         y="skill_name",
         orientation="h",
         text="employee_count",
+        color="employee_count",
+        color_continuous_scale="Blues",
         title="Top Skills"
     )
 
     fig.update_layout(
-        yaxis=dict(categoryorder="total ascending"),
-        height=450
+
+        height=450,
+
+        coloraxis_showscale=False,
+
+        yaxis=dict(
+            categoryorder="total ascending"
+        ),
+
+        margin=dict(
+            l=10,
+            r=10,
+            t=50,
+            b=10
+        ),
+
+        plot_bgcolor="white",
+        paper_bgcolor="white"
+    )
+
+    fig.update_traces(
+        textposition="outside"
     )
 
     st.plotly_chart(
@@ -27,21 +52,44 @@ def render_top_skills(skills):
     )
 
 
-def render_experience(experience):
+def render_experience(data):
 
-    df = pd.DataFrame(experience)
+    df = pd.DataFrame(data)
 
     fig = px.pie(
+
         df,
+
         names="experience_range",
+
         values="employee_count",
-        hole=.55,
-        title="Experience Distribution"
+
+        hole=.60,
+
+        color_discrete_sequence=px.colors.sequential.Blues_r
     )
 
     fig.update_traces(
+
         textposition="inside",
+
         textinfo="percent+label"
+    )
+
+    fig.update_layout(
+
+        title="Experience Distribution",
+
+        showlegend=False,
+
+        height=450,
+
+        margin=dict(
+            l=10,
+            r=10,
+            t=50,
+            b=10
+        )
     )
 
     st.plotly_chart(

@@ -1,20 +1,41 @@
 import requests
+import streamlit as st
 
 from config import API_BASE_URL
 
 
 class APIClient:
 
-    def get(self, endpoint: str):
+    def __init__(self):
 
-        response = requests.get(
-            f"{API_BASE_URL}{endpoint}"
-        )
+        self.session = requests.Session()
 
-        response.raise_for_status()
+        self.session.headers.update({
+            "Content-Type": "application/json"
+        })
 
-        return response.json()
-
+    def get(
+    self,
+    endpoint: str,
+    params: dict | None = None
+    ):
+    
+        try:
+        
+            response = self.session.get(
+                f"{API_BASE_URL}{endpoint}",
+                params=params,
+                timeout=30
+            )
+    
+            response.raise_for_status()
+    
+            return response.json()
+    
+        except requests.exceptions.RequestException as ex:
+        
+            st.error(f"Unable to connect to ESIA Backend.\n\n{ex}")
+            st.stop()
 
     def post(
         self,
@@ -22,11 +43,20 @@ class APIClient:
         payload: dict
     ):
 
-        response = requests.post(
-            f"{API_BASE_URL}{endpoint}",
-            json=payload
-        )
+        try:
 
-        response.raise_for_status()
+            response = self.session.post(
+                f"{API_BASE_URL}{endpoint}",
+                json=payload,
+                timeout=60
+            )
 
-        return response.json()
+            response.raise_for_status()
+
+            return response.json()
+
+        except requests.exceptions.RequestException as ex:
+
+            st.error(f"Unable to connect to ESIA Backend.\n\n{ex}")
+
+            st.stop()
