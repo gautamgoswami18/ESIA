@@ -1,63 +1,121 @@
 from app.ai.intent_classifier import IntentClassifier
+from app.schemas.esira_schema import ESIRAResponse
 from app.services.ai_service import AIService
+from app.utils.question_parser import QuestionParser
 
 
 class ESIRAService:
 
     def __init__(self, db):
-
         self.db = db
         self.intent_classifier = IntentClassifier()
         self.ai_service = AIService(db)
 
-    def ask(self, question: str):
+    def ask(
+        self,
+        question: str
+    ) -> ESIRAResponse:
 
         intent = self.intent_classifier.classify(question)
-        print("Intent =", intent)
-        print("repr =", repr(intent))
-        if intent == "SEARCH":
 
-            return self.ai_service.search_resume(question)
+        print("=" * 80)
+        print("Intent :", intent)
+        print("=" * 80)
 
-        elif intent == "SUMMARY":
+        try:
 
-            employee_id = self._extract_employee_id(question)
-            print("Employee ID:", employee_id)
+            if intent == "SEARCH":
 
-            return self.ai_service.resume_summary(employee_id)
+                result = self.ai_service.search_resume(question)
 
-        elif intent == "COMPARE":
+                return ESIRAResponse(
+                    intent="SEARCH",
+                    content_type="json",
+                    answer=result
+                )
 
-            emp1, emp2 = self._extract_two_employee_ids(question)
+            elif intent == "SUMMARY":
 
-            return self.ai_service.compare_candidates(emp1, emp2)
+                employee_id = QuestionParser.employee(question)
 
-        else:
+                summary = self.ai_service.resume_summary(
+                    employee_id
+                )
 
-            return {
-                "assistant": "ESIRA",
-                "intent": intent,
-                "answer": "Sorry, I couldn't understand your request."
-            }
+                return ESIRAResponse(
+                    intent="SUMMARY",
+                    content_type="markdown",
+                    answer=summary
+                )
 
-    def _extract_employee_id(self, question):
+            elif intent == "COMPARE":
 
-        import re
+                emp1, emp2 = QuestionParser.employees(question)
 
-        match = re.search(r"\d+", question)
+                comparison = self.ai_service.compare_candidates(
+                    emp1,
+                    emp2
+                )
 
-        if match:
-            return int(match.group())
+                return ESIRAResponse(
+                    intent="COMPARE",
+                    content_type="markdown",
+                    answer=comparison
+                )
+                # will implement below code in V2
+                """
+                elif intent == "SKILL_GAP":
 
-        raise Exception("Employee id not found.")
+                    employee_id = QuestionParser.employee(question)
 
-    def _extract_two_employee_ids(self, question):
+                    result = self.ai_service.skill_gap(employee_id)
 
-        import re
+                    return ESIRAResponse(
+                        intent="SKILL_GAP",
+                        content_type="json",
+                        answer=result
+                    )
 
-        ids = re.findall(r"\d+", question)
+                elif intent == "TRAINING":
 
-        if len(ids) >= 2:
-            return int(ids[0]), int(ids[1])
+                    employee_id = QuestionParser.employee(question)
 
-        raise Exception("Two employee ids required.")
+                    result = self.ai_service.training_recommendation(
+                        employee_id
+                    )
+
+                    return ESIRAResponse(
+                        intent="TRAINING",
+                        content_type="json",
+                        answer=result
+                    )
+
+                elif intent == "INTERVIEW":
+
+                    employee_id = QuestionParser.employee(question)
+
+                    result = self.ai_service.interview_questions(
+                        employee_id
+                    )
+
+                    return ESIRAResponse(
+                        intent="INTERVIEW",
+                        content_type="markdown",
+                        answer=result
+                    )
+                    """
+            else:
+
+                return ESIRAResponse(
+                    intent="UNKNOWN",
+                    content_type="text",
+                    answer="Sorry, I couldn't understand your request."
+                )
+
+        except Exception as ex:
+
+            return ESIRAResponse(
+                intent="ERROR",
+                content_type="text",
+                answer=str(ex)
+            )

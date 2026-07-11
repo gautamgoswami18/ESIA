@@ -10,12 +10,7 @@ class ESIRAService:
 
         response = self.client.post(
             "/esira/esiraChat",
-            {
-                "question": question
-            }
+            {"question": question}
         )
-
-        if "data" in response:
-            return response["data"]
 
         return response

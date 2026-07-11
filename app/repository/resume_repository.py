@@ -70,7 +70,7 @@ class ResumeRepository(BaseRepository):
         """)
 
         return self.fetch_one(
-            sql,
+             sql,
             {"employee_id": employee_id}
         )
     

@@ -25,7 +25,7 @@ class APIClient:
             response = self.session.get(
                 f"{API_BASE_URL}{endpoint}",
                 params=params,
-                timeout=30
+                timeout=100
             )
     
             response.raise_for_status()
@@ -48,7 +48,7 @@ class APIClient:
             response = self.session.post(
                 f"{API_BASE_URL}{endpoint}",
                 json=payload,
-                timeout=60
+                timeout=180
             )
 
             response.raise_for_status()
