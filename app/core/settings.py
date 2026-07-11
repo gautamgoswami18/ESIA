@@ -1,4 +1,7 @@
-from pydantic_settings import BaseSettings
+from pathlib import Path
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 class Settings(BaseSettings):
@@ -15,10 +18,25 @@ class Settings(BaseSettings):
     DB_SCHEMA: str
 
     LOG_LEVEL: str
-    GOOGLE_API_KEY: str    
-    class Config:
-        env_file = ".env"
+    LLM_PROVIDER: str = "gemini"
+    # Groq
+    GROQ_API_KEY: str = "GROQ_API_KEY"
+
+    GROQ_MODEL: str ="llama-3.3-70b-versatile"
+    # Gemini
+    GEMINI_MODEL: str = "gemini-2.5-flash"
     
+    
+    # Ollama
+    OLLAMA_MODEL: str = "llama3.2:3b"
+
+    #OLLAMA_BASE_URL=http://localhost:11434
+    
+
+    model_config = SettingsConfigDict(
+            env_file=BASE_DIR / ".env",
+            extra="ignore"
+        )    
 settings = Settings()
    
    

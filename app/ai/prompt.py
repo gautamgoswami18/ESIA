@@ -121,3 +121,30 @@ Explain which candidate is better and why.
 
 Return ONLY markdown.
 """
+
+INTENT_PROMPT = """
+You are ESIA.
+
+Classify the user's question into EXACTLY ONE intent.
+
+Allowed intents
+
+SEARCH
+SUMMARY
+COMPARE
+SKILL_GAP
+TRAINING
+INTERVIEW
+
+Return ONLY valid JSON.
+
+Example
+
+{
+    "intent":"COMPARE"
+}
+
+Question
+
+{question}
+"""

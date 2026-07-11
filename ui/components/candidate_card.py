@@ -27,14 +27,15 @@ def render_candidate(candidate, best=False):
 
         st.write("### Matching Skills")
 
-        skill_cols = st.columns(
-            len(candidate["matching_skills"])
-        )
+        skills = candidate.get("matching_skills") or []
 
-        for i, skill in enumerate(candidate["matching_skills"]):
-
-            skill_cols[i].success(skill)
-
-        st.write("### Why ESIRA Selected")
-
-        st.info(candidate["reason"])
+        if len(skills) > 0:
+        
+            cols = st.columns(min(len(skills), 4))
+        
+            for index, skill in enumerate(skills):
+                cols[index % len(cols)].success(skill)
+        
+        else:
+        
+            st.info("No matching skills")

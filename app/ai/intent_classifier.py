@@ -1,10 +1,12 @@
-from app.ai.llm import GeminiLLM
+import json
 
+from app.llm.provider_factory import ProviderFactory
+from app.utils.json_parser import JsonParser
 
 class IntentClassifier:
 
     def __init__(self):
-        self.llm = GeminiLLM.get_llm()
+        self.llm = ProviderFactory.get_provider()
 
     def classify(
         self,
@@ -23,50 +25,53 @@ SKILL_GAP
 TRAINING
 INTERVIEW
 
+Return ONLY valid JSON.
+
+Example:
+
+{{
+    "intent": "COMPARE"
+}}
+
 Rules:
 
-- SEARCH
-    Find employees
-    Find developer
-    Find candidate
-    Search resumes
-
-- SUMMARY
-    Summarize resume
-    Give profile summary
-    Tell about employee
-
-- COMPARE
-    Compare employee A and B
-    Difference between employees
-
-- SKILL_GAP
-    Missing skills
-    Skill gap
-    Ready for role
-
-- TRAINING
-    Recommend training
-    Learning path
-    Upskill
-
-- INTERVIEW
-    Generate interview questions
-    Prepare interview
-    Technical questions
-
-Return ONLY ONE WORD.
+- Do not explain.
+- Do not add extra text.
+- Do not use markdown.
+- Do not wrap the response in ```json.
+- Return only the JSON object.
 
 Question:
 
 {question}
 """
 
-        response = self.llm.invoke(prompt)
-
-        return(
-           response.content
-           .strip()
-           .replace('"', '')
-           .upper()
+        response = self.llm.generate(
+            prompt,
+            json_mode=True
         )
+
+        print("=" * 80)
+        print("RAW INTENT RESPONSE")
+        print(response)
+        print("=" * 80)
+
+        try:
+
+            data = JsonParser.parse(response)
+
+            intent = data.get("intent", "").strip().upper()
+
+            if intent == "":
+                raise Exception("Intent missing.")
+
+            return intent
+
+        except Exception as ex:
+
+            print("=" * 80)
+            print("Intent Parse Error")
+            print(ex)
+            print("=" * 80)
+
+            raise Exception("Unable to classify intent.")
