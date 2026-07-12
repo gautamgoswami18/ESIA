@@ -2,6 +2,7 @@ from app.ai.intent_classifier import IntentClassifier
 from app.schemas.esira_schema import ESIRAResponse
 from app.services.ai_service import AIService
 from app.utils.question_parser import QuestionParser
+from langsmith import traceable
 
 
 class ESIRAService:
@@ -11,6 +12,7 @@ class ESIRAService:
         self.intent_classifier = IntentClassifier()
         self.ai_service = AIService(db)
 
+    @traceable(name="ESIRA Ask")
     def ask(
         self,
         question: str

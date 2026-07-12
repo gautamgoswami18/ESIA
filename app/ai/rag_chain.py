@@ -8,13 +8,14 @@ from app.ai.prompt import SUMMARY_PROMPT
 from app.ai.prompt import COMPARE_PROMPT
 from app.llm.provider_factory import ProviderFactory
 from app.utils.json_parser import JsonParser
+from langsmith import traceable
 
 class RAGChain:
 
     def __init__(self):
         self.chroma = ChromaService()
         self.llm = ProviderFactory.get_provider()
-
+    @traceable(name="Resume Search")
     def ask(
         self,
         question: str,
@@ -61,7 +62,7 @@ class RAGChain:
 
         return JsonParser.parse(response)
 
-
+    @traceable(name="Resume Summary")
     def summarize_resume(
         self,
         resume_text: str
@@ -79,6 +80,7 @@ class RAGChain:
         return response.strip()
     
     
+    @traceable(name="Candidate Comparison")
     def compare_candidates(
         self,
         resume1: str,
@@ -94,10 +96,5 @@ class RAGChain:
             prompt,
             json_mode=False
         )
-    
-        print("=" * 80)
-        print("RAW COMPARE RESPONSE")
-        print(response)
-        print("=" * 80)
     
         return response.strip()

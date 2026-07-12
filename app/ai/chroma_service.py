@@ -1,6 +1,5 @@
 import chromadb
 
-
 class ChromaService:
 
     def __init__(self):

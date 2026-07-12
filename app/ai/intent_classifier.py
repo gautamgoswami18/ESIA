@@ -2,12 +2,12 @@ import json
 
 from app.llm.provider_factory import ProviderFactory
 from app.utils.json_parser import JsonParser
-
+from langsmith import traceable
 class IntentClassifier:
 
     def __init__(self):
         self.llm = ProviderFactory.get_provider()
-
+    @traceable(name="Intent Classification")
     def classify(
         self,
         question: str

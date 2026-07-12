@@ -32,7 +32,16 @@ class Settings(BaseSettings):
 
     #OLLAMA_BASE_URL=http://localhost:11434
     
+    LANGCHAIN_TRACING_V2: bool = False
 
+    LANGCHAIN_ENDPOINT: str = "https://api.smith.langchain.com"
+
+    LANGCHAIN_API_KEY: str = "LANGCHAIN_API_KEY"
+
+    LANGCHAIN_PROJECT: str = "ESIA"
+
+    RAG_PROVIDER: str = "langchain"
+    
     model_config = SettingsConfigDict(
             env_file=BASE_DIR / ".env",
             extra="ignore"
