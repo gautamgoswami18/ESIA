@@ -1,4 +1,6 @@
 from groq import Groq
+from langsmith import traceable
+from langchain_groq import ChatGroq
 
 from app.core.settings import settings
 from app.llm.base_provider import BaseLLMProvider
@@ -7,12 +9,14 @@ from app.llm.base_provider import BaseLLMProvider
 class GroqProvider(BaseLLMProvider):
 
     def __init__(self):
+
         self.client = Groq(
             api_key=settings.GROQ_API_KEY
         )
 
         self.model = settings.GROQ_MODEL
 
+    @traceable(name="Groq LLM")
     def generate(
         self,
         prompt: str,
@@ -25,11 +29,10 @@ class GroqProvider(BaseLLMProvider):
             messages.append(
                 {
                     "role": "system",
-                    "content": (
-                        "You are a JSON API."
-                        " Always return valid JSON."
-                        " Never use markdown."
-                    )
+                    "content":
+                        "You are a JSON API. "
+                        "Always return valid JSON. "
+                        "Never use markdown."
                 }
             )
 
@@ -56,3 +59,12 @@ class GroqProvider(BaseLLMProvider):
         )
 
         return response.choices[0].message.content.strip()
+
+    # ---------- NEW ----------
+    def get_langchain_llm(self):
+
+        return ChatGroq(
+            model=self.model,
+            api_key=settings.GROQ_API_KEY,
+            temperature=0
+        )

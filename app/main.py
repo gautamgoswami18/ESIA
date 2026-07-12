@@ -10,6 +10,7 @@ from app.api import resume
 from pydantic import ValidationError
 from app.api import search
 from app.api.ai import router as ai_router
+from app.core.langsmith import client
 from app.api import esira
 from app.api import dashboard
 from app.middleware.request_logger import RequestLoggingMiddleware

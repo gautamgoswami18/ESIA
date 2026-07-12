@@ -2,13 +2,14 @@ from app.ai.rag_chain import RAGChain
 from app.repository.resume_repository import ResumeRepository
 from app.core.exceptions import ResourceNotFoundException
 from sqlalchemy.orm import Session
+from app.ai.rag_factory import RAGFactory
 
 class AIService:
 
     def __init__(self, db):
         self.db = db
         self.repository = ResumeRepository(db)
-        self.rag = RAGChain()
+        self.rag = RAGFactory.get_rag()
     
     def search_resume(
         self,
