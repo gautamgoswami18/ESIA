@@ -8,6 +8,7 @@ from app.ai.prompt import SUMMARY_PROMPT
 from app.ai.prompt import COMPARE_PROMPT
 from app.llm.provider_factory import ProviderFactory
 from app.utils.json_parser import JsonParser
+from app.ai.query_normalizer import QueryNormalizer
 from langsmith import traceable
 
 class RAGChain:
@@ -23,7 +24,8 @@ class RAGChain:
     ):
 
         # Create embedding
-        embedding = EmbeddingGenerator.generate_embedding(question)
+        normalized_query = QueryNormalizer.normalize(question)
+        embedding = EmbeddingGenerator.generate_embedding(normalized_query)
 
         # Search Chroma
         results = self.chroma.search(

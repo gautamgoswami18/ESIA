@@ -42,6 +42,8 @@ class Settings(BaseSettings):
 
     RAG_PROVIDER: str = "langchain"
     
+    AI_ENGINE: str = "rag"
+    
     model_config = SettingsConfigDict(
             env_file=BASE_DIR / ".env",
             extra="ignore"
