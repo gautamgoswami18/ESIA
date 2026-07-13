@@ -14,17 +14,21 @@ class ESIRAGraph:
         builder = StateGraph(ESIRAState)
 
         # Nodes
+        builder.add_node("guard", self.nodes.guard_node)
         builder.add_node("intent", self.nodes.intent_node)
         builder.add_node("search", self.nodes.search_node)
         builder.add_node("summary", self.nodes.summary_node)
         builder.add_node("compare", self.nodes.compare_node)
         builder.add_node("greeting",self.nodes.greeting_node)
         builder.add_node("unknown", self.nodes.unknown_node)
-       
+        builder.add_node("guard_failed", self.nodes.guard_failed_node)
+        builder.add_node("output_guard", self.nodes.output_guard_node)
+        builder.add_node("output_guard_failed",self.nodes.output_guard_failed_node)
+        
 
         # Entry Point
-        builder.set_entry_point("intent")
-
+        #builder.set_entry_point("intent")
+        builder.set_entry_point("guard")
         # Routing
         builder.add_conditional_edges(
             "intent",
@@ -39,14 +43,38 @@ class ESIRAGraph:
         )
 
         # End Nodes
-        builder.add_edge("search", END)
-        builder.add_edge("summary", END)
-        builder.add_edge("compare", END)
-        builder.add_edge("greeting", END)
-        builder.add_edge("unknown", END)
-
+        builder.add_edge("search", "output_guard")
+        builder.add_edge("summary", "output_guard")
+        builder.add_edge("compare", "output_guard")
+        builder.add_edge("greeting", "output_guard")
+        builder.add_edge("unknown", "output_guard")
+        builder.add_edge("guard_failed", "output_guard")
+        builder.add_conditional_edges(
+            "guard",
+            self.guard_route,
+            {
+                "PASS": "intent",
+                "FAIL": "guard_failed"
+            }
+        )
+        builder.add_conditional_edges(
+            "output_guard",
+            self.output_guard_route,
+            {
+                "PASS": END,
+                "FAIL": "output_guard_failed"
+            }
+        )
         self.graph = builder.compile()
+    def guard_route(
+        self,
+        state
+    ):
 
+        if state["guard_passed"]:
+            return "PASS"
+
+        return "FAIL"
     def route(
         self,
         state: ESIRAState
@@ -66,6 +94,15 @@ class ESIRAGraph:
             return "GREETING"
 
         return "UNKNOWN"
+    def output_guard_route(
+        self,
+        state
+    ):
+
+        if state["output_guard_passed"]:
+            return "PASS"
+
+        return "FAIL"
 
     def invoke(
         self,
@@ -79,7 +116,9 @@ class ESIRAGraph:
                 "answer": None,
                 "content_type": "",
                 "employee1": None,
-                "employee2": None
+                "employee2": None,
+                "guard_passed": True,
+                "guard_message": ""
             }
         )
 

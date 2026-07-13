@@ -2,6 +2,7 @@ import streamlit as st
 
 from components.candidate_card  import render_candidate
 from components.recommendation import render_recommendation
+from ui.components.no_result import render_no_result
 
 
 def render(response):
@@ -19,8 +20,14 @@ def render(response):
         st.subheader("Search Query")
         st.info(answer["query"])
 
+        best_candidate = answer.get("best_candidate")
+
+        if not best_candidate:
+            render_no_result()
+            return
+
         render_candidate(
-            answer["best_candidate"],
+            best_candidate,
             best=True
         )
 
