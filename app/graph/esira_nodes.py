@@ -133,7 +133,12 @@ class ESIRANodes:
     def output_guard_node(self, state):
 
         print(">>> LangGraph : Output Guard")
-    
+        """
+        print("=" * 80)
+        print(type(state["answer"]))
+        print(state["answer"])
+        print("=" * 80)
+        """
         result = OutputGuardService.validate(
             answer=state["answer"],
             context=state["context"]
@@ -148,13 +153,10 @@ class ESIRANodes:
             state["answer"] = {
             
                 "query": state["question"],
-    
                 "best_candidate": None,
-    
                 "other_candidates": [],
-    
                 "recommendation": result.message
-    
+  
             }
     
             return state

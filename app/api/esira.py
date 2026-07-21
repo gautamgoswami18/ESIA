@@ -17,11 +17,10 @@ router = APIRouter(
     "/esiraChat",
     response_model=ESIRAResponse
 )
-def ask(
+async def ask(
     request: ESIRARequest,
     db: Session = Depends(get_db)
 ):
-
     service = ESIRAService(db)
-
-    return service.ask(request.question)
+    print(request.question)
+    return await service.ask(request.question)

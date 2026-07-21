@@ -6,7 +6,6 @@ from app.repository.resume_repository import ResumeRepository
 
 from app.services.ai_service import AIService
 
-
 class EmployeeProfileService:
 
     def __init__(self, db):
@@ -22,7 +21,6 @@ class EmployeeProfileService:
         self.resume_repo = ResumeRepository(db)
 
         self.ai_service = AIService(db)
-
 
     def get_employee_profile(
     self,

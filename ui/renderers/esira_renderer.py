@@ -1,6 +1,6 @@
 import streamlit as st
 
-from components.candidate_card  import render_candidate
+from components.candidate_card import render_candidate
 from components.recommendation import render_recommendation
 from ui.components.no_result import render_no_result
 
@@ -11,51 +11,99 @@ def render(response):
         st.error("No response received.")
         return
 
-    # Search Response
-    if response.get("intent") == "SEARCH":
+    with st.container():
 
-        answer = response["answer"]
-
-        st.divider()
-        st.subheader("Search Query")
-        st.info(answer["query"])
-
-        best_candidate = answer.get("best_candidate")
-
-        if not best_candidate:
-            render_no_result()
-            return
-
-        render_candidate(
-            best_candidate,
-            best=True
+        st.markdown(
+            """
+            <div class="assistant-message">
+                <div class="assistant-avatar">
+                    🤖
+                </div>
+                <div class="assistant-content">
+            """,
+            unsafe_allow_html=True
         )
 
-        st.divider()
-        st.subheader("Other Candidates")
+        # -----------------------------
+        # SEARCH RESPONSE
+        # -----------------------------
 
-        for candidate in answer.get("other_candidates", []):
-            render_candidate(candidate)
+        if response.get("intent") == "SEARCH":
 
-        if answer.get("recommendation"):
-            st.divider()
-            render_recommendation(
-                answer["recommendation"]
+            answer = response["answer"]
+
+            best_candidate = answer.get("best_candidate")
+
+            if not best_candidate:
+                render_no_result()
+            else:
+
+                st.markdown("## 🏆 Best Candidate")
+
+                render_candidate(
+                    best_candidate,
+                    best=True
+                )
+
+                other_candidates = answer.get(
+                    "other_candidates",
+                    []
+                )
+
+                if other_candidates:
+
+                    st.markdown("---")
+                    st.markdown("## 👥 Other Candidates")
+
+                    for candidate in other_candidates:
+
+                        render_candidate(candidate)
+
+                recommendation = answer.get(
+                    "recommendation"
+                )
+
+                if recommendation:
+
+                    st.markdown("---")
+                    render_recommendation(
+                        recommendation
+                    )
+
+        # -----------------------------
+        # MARKDOWN
+        # -----------------------------
+
+        elif response.get("content_type") == "markdown":
+
+            st.markdown(
+                response["answer"]
             )
 
-        return
+        # -----------------------------
+        # JSON
+        # -----------------------------
 
-    # Markdown Response
-    elif response.get("content_type") == "markdown":
+        elif response.get("content_type") == "json":
 
-        st.markdown(response["answer"])
+            st.json(
+                response["answer"]
+            )
 
-    # JSON Response
-    elif response.get("content_type") == "json":
+        # -----------------------------
+        # TEXT
+        # -----------------------------
 
-        st.json(response["answer"])
+        else:
 
-    # Text Response
-    else:
+            st.write(
+                response["answer"]
+            )
 
-        st.write(response["answer"])
+        st.markdown(
+            """
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )

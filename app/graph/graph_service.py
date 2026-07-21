@@ -10,5 +10,6 @@ class GraphService:
         self.ai_service = AIService(db)
         self.graph = ESIRAGraph(self.ai_service)
 
-    def ask(self, question: str):
-        return self.graph.invoke(question)
+    async def ask(self, question: str):
+
+        return await self.graph.invoke(question)

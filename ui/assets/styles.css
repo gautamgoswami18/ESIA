@@ -1,33 +1,260 @@
-/* ============================
-   ESIRA Theme
-============================ */
+/* ==========================================================
+   ESIRA ChatGPT Theme
+========================================================== */
 
-.main {
-    background-color: #F5F7FA;
+html,
+body,
+[data-testid="stAppViewContainer"] {
+    background: #F7F7F8;
 }
+
+/* Main page */
+.main {
+    background: #F7F7F8;
+}
+
+/* Reduce top spacing */
+.block-container {
+    padding-top: 1.5rem;
+    padding-bottom: 8rem;
+    max-width: 1050px;
+}
+
+/* Hide Streamlit Footer */
+footer {
+    visibility: hidden;
+}
+
+header {
+    visibility: hidden;
+}
+
+/* ===============================
+   Titles
+================================ */
+
+h1 {
+    font-size: 34px;
+    font-weight: 700;
+    color: #202123;
+}
+
+h2,
+h3 {
+    color: #202123;
+}
+
+/* ===============================
+   Chat Messages
+================================ */
+
+[data-testid="stChatMessage"] {
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 18px;
+}
+
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
+    background: #ECECF1;
+}
+
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) {
+    background: white;
+    border: 1px solid #E5E5E5;
+}
+
+/* ===============================
+   Chat Input
+================================ */
+
+[data-testid="stChatInput"] {
+    position: fixed;
+    bottom: 18px;
+    left: 320px;
+    right: 40px;
+    background: white;
+    padding: 10px;
+    border-radius: 16px;
+    box-shadow: 0px 6px 20px rgba(0,0,0,.12);
+    z-index: 999;
+}
+
+/* ===============================
+   Prompt Buttons
+================================ */
+
+.stButton>button {
+
+    border-radius: 999px;
+
+    border: 1px solid #DDDDDD;
+
+    background: white;
+
+    color: #202123;
+
+    height: 40px;
+
+    font-weight: 500;
+
+    transition: all .2s ease;
+}
+
+.stButton>button:hover {
+
+    background: #10A37F;
+
+    color: white;
+
+    border-color: #10A37F;
+
+    transform: translateY(-1px);
+}
+
+/* ===============================
+   Cards
+================================ */
 
 .metric-card {
+
     background: white;
+
     border-radius: 14px;
+
     padding: 20px;
-    box-shadow: 0px 4px 15px rgba(0,0,0,.08);
-    text-align: center;
-    border-left: 5px solid #2563EB;
+
+    margin-bottom: 15px;
+
+    border: 1px solid #ECECEC;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
 }
 
-.metric-title{
-    color:#6B7280;
-    font-size:16px;
-    font-weight:600;
+/* ===============================
+   Candidate Cards
+================================ */
+
+.element-container:has(.metric-card) {
+
+    margin-bottom: 18px;
 }
 
-.metric-value{
-    color:#111827;
-    font-size:38px;
-    font-weight:700;
+/* ===============================
+   Recommendation
+================================ */
+
+.stAlert {
+
+    border-radius: 12px;
+}
+
+/* ===============================
+   Scrollbar
+================================ */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #C8C8C8;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #A0A0A0;
+}
+
+/* ===============================
+   Sidebar
+================================ */
+
+[data-testid="stSidebar"] {
+    background: white;
+}
+
+/* ===============================
+   Prompt Bar Spacing
+================================ */
+
+.prompt-container {
+
+    margin-top: 15px;
+
+    margin-bottom: 25px;
+}
+
+/* ===============================
+   Chat Width
+================================ */
+
+[data-testid="stVerticalBlock"] {
+
+    gap: .6rem;
+}
+
+
+/* Recommendation Card */
+
+.esira-card{
+    background:#ffffff;
+    border:1px solid #e5e7eb;
+    border-radius:14px;
+    padding:18px;
     margin-top:10px;
+    margin-bottom:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
 }
 
-.metric-icon{
-    font-size:32px;
+.esira-card-title{
+    font-size:18px;
+    font-weight:700;
+    margin-bottom:10px;
+    color:#111827;
+}
+
+/* ===========================
+   CHAT UI
+=========================== */
+
+.user-message{
+    display:flex;
+    justify-content:flex-end;
+    margin:20px 0;
+}
+
+.user-bubble{
+    max-width:70%;
+    background:#2563EB;
+    color:white;
+    padding:14px 18px;
+    border-radius:18px;
+    font-size:15px;
+}
+
+.assistant-message{
+    display:flex;
+    gap:12px;
+    margin:25px 0;
+}
+
+.assistant-avatar{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#2563EB;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    flex-shrink:0;
+}
+
+.assistant-content{
+    flex:1;
+}
+
+.chat-divider{
+    margin:20px 0;
 }

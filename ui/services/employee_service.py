@@ -6,7 +6,7 @@ class EmployeeService:
     def __init__(self):
         self.client = APIClient()
 
-    def get_employees(self, page=1, size=10):
+    def get_employees(self, page=1, size=20):
 
         response = self.client.get(
             "/employees",
