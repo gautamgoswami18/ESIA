@@ -109,7 +109,24 @@ def show_employee_profile(employee_id):
 
     with tabs[4]:
 
-        st.info(profile["resume"]["file_name"])
+        resume_file = profile["resume"]["file_name"]
+
+        resume_path = profile["resume"]["file_path"]
+    
+        col1, col2 = st.columns([5, 1])
+    
+        with col1:
+            st.info(resume_file)
+    
+        with col2:
+            with open(resume_path, "rb") as file:
+                st.download_button(
+                    label="⬇ Download",
+                    data=file,
+                    file_name=resume_file,
+                    mime="application/pdf",
+                    use_container_width=True
+                )
 
     with tabs[5]:
 

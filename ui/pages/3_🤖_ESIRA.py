@@ -7,27 +7,72 @@ from components.prompt_bar import render_prompt_bar
 service = ESIRAService()
 
 st.title("🤖 ESIRA")
+st.caption("Employee Skill Intelligence & Recruitment Assistant")
 
-st.caption(
-    "Employee Skill Intelligence & Recruitment Assistant"
-)
+# -----------------------------
+# Session State
+# -----------------------------
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
+# -----------------------------
+# Chat History
+# -----------------------------
+chat_container = st.container()
+
+with chat_container:
+
+    for message in st.session_state.messages:
+
+        with st.chat_message(message["role"]):
+
+            if message["role"] == "assistant":
+                render(message["content"])
+            else:
+                st.markdown(message["content"])
+
+
+# -----------------------------
+# Suggested Prompts
+# -----------------------------
 prompt = render_prompt_bar()
 
-question = st.text_input(
-    "Ask ESIRA",
-    value=prompt if prompt else ""
+
+# -----------------------------
+# Chat Input
+# -----------------------------
+question = st.chat_input(
+    "Ask ESIRA..."
 )
 
-search = st.button(
-    "🔍 Search",
-    use_container_width=True
-)
+if not question and prompt:
+    question = prompt
 
-if search and question:
+if question:
 
-    with st.spinner("ESIRA is searching..."):
+    st.session_state.messages.append(
+        {
+            "role": "user",
+            "content": question
+        }
+    )
 
-        response = service.ask(question)
+    with st.chat_message("user"):
+        st.markdown(question)
 
-    render(response)
+    with st.chat_message("assistant"):
+
+        with st.spinner("🤖 ESIRA is thinking..."):
+
+            response = service.ask(question)
+
+            render(response)
+
+    st.session_state.messages.append(
+        {
+            "role": "assistant",
+            "content": response
+        }
+    )
+
+    st.rerun()

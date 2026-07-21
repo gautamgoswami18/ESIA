@@ -104,12 +104,12 @@ class ESIRAGraph:
 
         return "FAIL"
 
-    def invoke(
+    async def invoke(
         self,
         question: str
     ) -> ESIRAResponse:
 
-        result = self.graph.invoke(
+        result = await self.graph.ainvoke(
             {
                 "question": question,
                 "intent": "",

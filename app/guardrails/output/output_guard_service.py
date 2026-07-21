@@ -7,17 +7,18 @@ from app.guardrails.output.no_result_guard import NoResultGuard
 class OutputGuardService:
 
     @classmethod
-    def validate(cls, answer, context=None):
+    def validate(cls, answer, context=None, content_type="markdown"):
 
         result = NoResultGuard.validate(answer)
 
         if result and not result.allowed:
             return result
-
-        result = JSONGuard.validate(answer)
-
-        if result and not result.allowed:
-            return result
+        # Validate JSON only when response is JSON
+        if content_type == "json":
+            result = JSONGuard.validate(answer)
+    
+            if result and not result.allowed:
+                return result
 
         result = HallucinationGuard.validate(
             answer,
