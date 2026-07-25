@@ -7,9 +7,9 @@ from app.ai.langchain_rag import LangChainRAG
 class RAGFactory:
 
     @staticmethod
-    def get_rag():
+    def get_rag(db=None):
 
         if settings.RAG_PROVIDER.lower() == "langchain":
-            return LangChainRAG()
+            return LangChainRAG(db=db)
 
-        return RAGChain()
+        return RAGChain(db=db)

@@ -14,7 +14,8 @@ class BaseRepository:
 
     def fetch_all(self, sql, params=None):
 
-        result = self.db.execute(text(sql), params or {})
+        statement = text(sql) if isinstance(sql, str) else sql
+        result = self.db.execute(statement, params or {})
 
         return [
             dict(row)
@@ -23,7 +24,8 @@ class BaseRepository:
 
     def fetch_one(self, sql, params=None):
 
-        result = self.db.execute(text(sql), params or {})
+        statement = text(sql) if isinstance(sql, str) else sql
+        result = self.db.execute(statement, params or {})
 
         row = result.mappings().first()
 
@@ -47,7 +49,8 @@ class BaseRepository:
 
     def execute(self, sql, params=None):
 
-        self.db.execute(sql, params or {})
+        statement = text(sql) if isinstance(sql, str) else sql
+        self.db.execute(statement, params or {})
 
         self.db.commit()
 

@@ -13,10 +13,14 @@ IMPORTANT RULES
 
 - Never use outside knowledge.
 - Never hallucinate.
-- The match_score provided in the Resume Context has already been calculated.
-- NEVER change or recalculate match_score.
-- Keep the same match_score value.
-- Explain WHY each candidate matches based on skills and experience.
+- Candidates in Resume Context are already deduplicated and ranked.
+- Copy rank, employee_id, name, role, experience, match_score,
+  matched_requirements and missing_requirements exactly.
+- NEVER change, recalculate or reorder match_score.
+- A certification or training score is evidence, not match_score.
+- Explain WHY each candidate matches using the provided score breakdown.
+- Explicitly mention important missing requirements; do not describe a
+  partial match as a complete match.
 - Return ONLY valid JSON.
 - Do NOT wrap JSON in markdown.
 
@@ -26,21 +30,25 @@ Return EXACTLY this JSON:
     "query": "",
     "best_candidate": {{
         "rank": 1,
+        "employee_id": 0,
         "name": "",
         "role": "",
         "experience": "",
         "match_score": 0,
         "matching_skills": [],
+        "missing_requirements": [],
         "reason": ""
     }},
     "other_candidates": [
         {{
             "rank": 2,
+            "employee_id": 0,
             "name": "",
             "role": "",
             "experience": "",
             "match_score": 0,
             "matching_skills": [],
+            "missing_requirements": [],
             "reason": ""
         }}
     ],
@@ -150,3 +158,176 @@ Example:
 Question:
 {question}
 """
+
+# Build resume prompt
+def build_resume_prompt(resume_text: str) -> str:
+    """
+    Build prompt for extracting structured employee profile from resume.
+    """
+
+    return f"""
+You are ESIA (Employee Skill Intelligence Assistant).
+
+Your task is to analyze the employee resume and extract structured information.
+
+Rules:
+
+- Return ONLY valid JSON.
+- Do NOT return markdown.
+- Do NOT return ```json.
+- Do NOT explain anything.
+- Do NOT invent any information.
+- If information is unavailable, return an empty string, empty array or empty object.
+- Preserve the exact names of skills, technologies, certifications and projects.
+- Remove duplicate values.
+- Extract every relevant skill, technology, certification, project, training and domain found in the resume.
+
+Return JSON in exactly the following format:
+
+{{
+    "summary": "",
+
+    "experience": {{
+        "total_years": "",
+        "current_designation": "",
+        "current_company": ""
+    }},
+
+    "skills": [
+        {{
+            "name": "",
+            "category": ""
+        }}
+    ],
+
+    "projects": [
+        {{
+            "name": "",
+            "client": "",
+            "role": "",
+            "domain": "",
+            "description": "",
+            "technologies": []
+        }}
+    ],
+
+    "certifications": [
+        {{
+            "name": "",
+            "provider": "",
+            "year": ""
+        }}
+    ],
+
+    "training": [
+        {{
+            "name": "",
+            "provider": ""
+        }}
+    ],
+
+    "education": [
+        {{
+            "degree": "",
+            "institution": "",
+            "year": ""
+        }}
+    ],
+
+    "domains": [],
+
+    "languages": []
+}}
+
+Resume:
+
+{resume_text}
+"""
+
+
+
+def build_resume_extraction_prompt(
+    resume_text: str
+) -> str:
+
+    if not resume_text or not resume_text.strip():
+        raise ValueError(
+            "Resume text is empty. Cannot build AI extraction prompt."
+        )
+
+    prompt = f"""
+You are an enterprise resume parsing assistant.
+
+Extract structured employee information from the resume text.
+
+Rules:
+1. Return only valid JSON.
+2. Do not return markdown.
+3. Do not wrap the response in a JSON code block.
+4. Do not invent information.
+5. Use null when a scalar value is unavailable.
+6. Use an empty list when a list value is unavailable.
+7. experience_years must be numeric.
+8. Remove duplicate skills.
+9. primary_skill should contain the strongest technical skill.
+10. Do not add placeholder objects to arrays.
+11. If a section is absent, return an empty array for that section.
+12. Extract all training courses separately from certifications.
+
+Return exactly this JSON structure:
+
+{{
+    "first_name": "",
+    "last_name": null,
+    "email": null,
+    "phone": null,
+    "designation": null,
+    "department": null,
+    "location": null,
+    "experience_years": 0.0,
+    "primary_skill": null,
+    "skills": [
+        {{
+            "name": "",
+            "category": null,
+            "proficiency": null,
+            "years_of_experience": null
+        }}
+    ],
+    "projects": [
+        {{
+            "name": "",
+            "client": null,
+            "domain": null,
+            "description": null,
+            "role": null,
+            "technologies": [],
+            "responsibilities": []
+        }}
+    ],
+    "certifications": [
+        {{
+            "name": "",
+            "issuing_organization": null,
+            "issue_date": null,
+            "expiry_date": null,
+            "credential_id": null
+        }}
+    ],
+    "training": [
+        {{
+            "name": "",
+            "technology": null,
+            "provider": null,
+            "score": null
+        }}
+    ],
+    "summary": null
+}}
+
+Resume text:
+
+{resume_text}
+"""
+
+    return prompt.strip()

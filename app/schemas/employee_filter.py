@@ -4,6 +4,7 @@ class EmployeeFilter(BaseModel):
 
     search: Optional[str] = None
     location: Optional[str] = None
+    designation: Optional[str] = None
     skill: Optional[str] = None
     domain: Optional[str] = None
     availability: Optional[str] = None
@@ -33,9 +34,7 @@ class EmployeeFilter(BaseModel):
             "designation",
             "location",
             "experience_years",
-            "domain",
             "joining_date",
-            "utilization",
             "employment_status"
         }
 

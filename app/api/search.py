@@ -1,7 +1,9 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 
 from pydantic import BaseModel
+from sqlalchemy.orm import Session
 
+from app.database import get_db
 from app.schemas.response import APIResponse
 from app.services.search_service import SearchService
 
@@ -18,9 +20,12 @@ class SearchRequest(BaseModel):
 
 
 @router.post("/resumes")
-def search_resumes(request: SearchRequest):
+def search_resumes(
+    request: SearchRequest,
+    db: Session = Depends(get_db),
+):
 
-    service = SearchService()
+    service = SearchService(db=db)
 
     result = service.search_resumes(
         query=request.query,

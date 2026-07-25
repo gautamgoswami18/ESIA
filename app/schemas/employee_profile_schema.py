@@ -1,61 +1,63 @@
-from typing import Optional
+from typing import Any
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class SkillResponse(BaseModel):
-    skill_name: str
-    proficiency_level: Optional[str] = None
-    years_of_experience: Optional[float] = None
-    last_used: Optional[str] = None
+
+    name: str
+    category: str | None = None
+    proficiency: str | None = None
+    years_of_experience: float | None = None
 
 
 class ProjectResponse(BaseModel):
-    project_name: str
-    client_name: Optional[str] = None
-    domain: Optional[str] = None
-    role_name: Optional[str] = None
-    allocation_percentage: Optional[str] = None
-    start_date: Optional[str] = None
-    end_date: Optional[str] = None
+
+    name: str
+    client: str | None = None
+    domain: str | None = None
+    description: str | None = None
+    role: str | None = None
+    technologies: list[str] = Field(default_factory=list)
+    responsibilities: list[str] = Field(default_factory=list)
 
 
 class CertificationResponse(BaseModel):
-    certification_name: str
-    vendor: Optional[str] = None
-    issue_date: Optional[str] = None
-    expiry_date: Optional[str] = None
-    certification_status: Optional[str] = None
+
+    name: str
+    issuing_organization: str | None = None
+    issue_date: str | None = None
+    expiry_date: str | None = None
+    credential_id: str | None = None
 
 
-class ResumeResponse(BaseModel):
-    file_name: Optional[str] = None
-    file_path: Optional[str] = None
-    #resume_text: Optional[str] = None
+class TrainingResponse(BaseModel):
 
-
-class EmployeeResponse(BaseModel):
-    employee_id: int
-    first_name: str
-    last_name: str
-    designation: Optional[str] = None
-    experience_years: Optional[float] = None
-    email: Optional[str] = None
-    department: Optional[str] = None
-    location: Optional[str] = None
-    primary_skill: Optional[str] = None
+    name: str
+    technology: str | None = None
+    provider: str | None = None
+    score: str | float | None = None
 
 
 class EmployeeProfileResponse(BaseModel):
 
-    employee: EmployeeResponse
+    first_name: str
+    last_name: str | None = None
+    email: str | None = None
+    phone: str | None = None
 
-    skills: list[SkillResponse]
+    designation: str | None = None
+    department: str | None = None
+    location: str | None = None
 
-    projects: list[ProjectResponse]
+    experience_years: float = 0.0
+    primary_skill: str | None = None
 
-    certifications: list[CertificationResponse]
+    skills: list[SkillResponse] = Field(default_factory=list)
+    projects: list[ProjectResponse] = Field(default_factory=list)
+    certifications: list[CertificationResponse] = Field(
+        default_factory=list
+    )
+    training: list[TrainingResponse] = Field(default_factory=list)
 
-    resume: Optional[ResumeResponse] = None
-
-    summary: str
+    summary: str | None = None

@@ -6,7 +6,7 @@ from app.core.logging import logger
 
 from app.api.health import router as health_router
 from app.api.employee import router as employee_router
-from app.api import resume
+from app.api.resume import router as  resume_router
 from pydantic import ValidationError
 from app.api import search
 from app.api.ai import router as ai_router
@@ -58,28 +58,6 @@ app.add_exception_handler(
     Exception,
     global_exception_handler,
 )
-async def global_exception_handler(
-    request: Request,
-    exc: Exception,
-):
-    print("=" * 80)
-    print(type(exc))
-    print(repr(exc))
-    print("=" * 80)
-
-    logger.exception(
-        f"Unhandled exception while processing "
-        f"{request.method} {request.url.path}"
-    )
-
-    return JSONResponse(
-        status_code=500,
-        content=APIResponse(
-            success=False,
-            message="Internal Server Error",
-            data=None,
-        ).model_dump()
-    )
 
 # ------------------------------------------------------------------
 # Dashboard
@@ -93,11 +71,10 @@ app.include_router(dashboard.router)
 app.add_middleware(RequestLoggingMiddleware)
 app.include_router(esira.router)
 app.include_router(employee_router)
-app.include_router(resume.router)
+app.include_router(resume_router)
 app.include_router(search.router)
 app.include_router(ai_router)
 app.include_router(health_router)
-
 
 # ------------------------------------------------------------------
 # APIs

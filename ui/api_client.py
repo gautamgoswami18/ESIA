@@ -1,62 +1,114 @@
+from __future__ import annotations
+
+from typing import Any
+
 import requests
-import streamlit as st
 
 from config import API_BASE_URL
+
+
+class APIError(RuntimeError):
+    """A user-safe representation of a backend request failure."""
 
 
 class APIClient:
 
     def __init__(self):
-
         self.session = requests.Session()
+        self.session.headers.update({"Accept": "application/json"})
 
-        self.session.headers.update({
-            "Content-Type": "application/json"
-        })
+    @staticmethod
+    def _message(response: requests.Response) -> str:
+        try:
+            payload = response.json()
+        except ValueError:
+            return response.text or f"HTTP {response.status_code}"
+
+        if isinstance(payload, dict):
+            detail = payload.get("detail")
+            if detail:
+                return str(detail)
+            message = payload.get("message")
+            if message:
+                return str(message)
+        return str(payload)
 
     def get(
-    self,
-    endpoint: str,
-    params: dict | None = None
-    ):
-    
+        self,
+        endpoint: str,
+        params: dict[str, Any] | None = None,
+        timeout: int = 100,
+    ) -> dict:
         try:
-        
             response = self.session.get(
                 f"{API_BASE_URL}{endpoint}",
                 params=params,
-                timeout=100
+                timeout=timeout,
             )
-    
-            response.raise_for_status()
-    
+            if not response.ok:
+                raise APIError(self._message(response))
             return response.json()
-    
         except requests.exceptions.RequestException as ex:
-        
-            st.error(f"Unable to connect to ESIA Backend.\n\n{ex}")
-            st.stop()
+            raise APIError(
+                "Unable to connect to the ESIA backend. "
+                "Confirm FastAPI is running on port 8000."
+            ) from ex
 
     def post(
         self,
         endpoint: str,
-        payload: dict
-    ):
-
+        payload: dict | None = None,
+        timeout: int = 180,
+    ) -> dict:
         try:
-
             response = self.session.post(
                 f"{API_BASE_URL}{endpoint}",
-                json=payload,
-                timeout=180
+                json=payload or {},
+                timeout=timeout,
             )
-
-            response.raise_for_status()
-
+            if not response.ok:
+                raise APIError(self._message(response))
             return response.json()
-
         except requests.exceptions.RequestException as ex:
+            raise APIError(
+                "Unable to connect to the ESIA backend. "
+                "Confirm FastAPI is running on port 8000."
+            ) from ex
 
-            st.error(f"Unable to connect to ESIA Backend.\n\n{ex}")
+    def process_resume(self, uploaded_file) -> dict:
+        if uploaded_file is None:
+            raise APIError("Please select a PDF resume.")
 
-            st.stop()
+        file_bytes = uploaded_file.getvalue()
+        if not file_bytes:
+            raise APIError("The selected resume is empty.")
+
+        try:
+            response = requests.post(
+                f"{API_BASE_URL}/resume/process",
+                files={
+                    "file": (
+                        uploaded_file.name,
+                        file_bytes,
+                        "application/pdf",
+                    )
+                },
+                headers={"Accept": "application/json"},
+                timeout=300,
+            )
+            if not response.ok:
+                raise APIError(self._message(response))
+            return response.json()
+        except requests.exceptions.Timeout as ex:
+            raise APIError(
+                "Resume processing timed out. Please try again."
+            ) from ex
+        except requests.exceptions.RequestException as ex:
+            raise APIError(
+                "Unable to connect to the ESIA backend. "
+                "Confirm FastAPI is running on port 8000."
+            ) from ex
+
+    @staticmethod
+    def download_url(employee_id: int) -> str:
+        return f"{API_BASE_URL}/resume/{employee_id}/download"

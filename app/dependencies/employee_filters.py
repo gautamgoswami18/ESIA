@@ -5,6 +5,7 @@ from app.schemas.employee_filter import EmployeeFilter
 def get_employee_filters(
     search: str | None = Query(None),
     location: str | None = Query(None),
+    designation: str | None = Query(None),
     skill: str | None = Query(None),
     domain: str | None = Query(None),
     availability: str | None = Query(None),
@@ -18,6 +19,7 @@ def get_employee_filters(
     return EmployeeFilter(
         search=search,
         location=location,
+        designation=designation,
         skill=skill,
         domain=domain,
         availability=availability,

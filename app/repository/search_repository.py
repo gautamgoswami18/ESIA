@@ -27,9 +27,33 @@ class SearchRepository:
             query
         )
 
+        collection_size = self.collection.count()
+        if collection_size == 0:
+            return {
+                "ids": [[]],
+                "metadatas": [[]],
+                "documents": [[]],
+                "distances": [[]],
+            }
+
         results = self.collection.query(
             query_embeddings=[query_embedding],
-            n_results=top_k
+            n_results=min(top_k, collection_size),
+            include=["documents", "metadatas", "distances"],
         )
 
         return results
+
+    def get_employee_documents(
+        self,
+        employee_id: int,
+    ) -> list[str]:
+        result = self.collection.get(
+            where={"employee_id": employee_id},
+            include=["documents"],
+        )
+        return [
+            str(document)
+            for document in (result.get("documents") or [])
+            if document
+        ]

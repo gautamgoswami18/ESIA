@@ -4,6 +4,8 @@ from langchain_groq import ChatGroq
 
 from app.core.settings import settings
 from app.llm.base_provider import BaseLLMProvider
+from app.ai.prompt import build_resume_prompt
+from app.utils.json_parser import JsonParser
 
 
 class GroqProvider(BaseLLMProvider):
@@ -68,3 +70,16 @@ class GroqProvider(BaseLLMProvider):
             api_key=settings.GROQ_API_KEY,
             temperature=0
         )
+    
+
+
+    def extract_resume_profile(
+        self,
+        resume_text: str
+    ) -> dict:
+    
+        prompt = build_resume_prompt(resume_text)
+    
+        response = self.generate(prompt)
+    
+        return JsonParser.parse(response)

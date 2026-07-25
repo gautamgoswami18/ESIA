@@ -1,20 +1,20 @@
-import json
-
-from app.ai.chroma_service import ChromaService
-from app.ai.embedding_generator import EmbeddingGenerator
 from app.ai.prompt import RAG_PROMPT
-from app.schemas.ai_response import AIResponse
 from app.ai.prompt import SUMMARY_PROMPT
 from app.ai.prompt import COMPARE_PROMPT
+from app.ai.search_grounding import (
+    build_ranked_context,
+    ground_search_response,
+)
 from app.llm.provider_factory import ProviderFactory
+from app.services.search_service import SearchService
 from app.utils.json_parser import JsonParser
 from app.ai.query_normalizer import QueryNormalizer
 from langsmith import traceable
 
 class RAGChain:
 
-    def __init__(self):
-        self.chroma = ChromaService()
+    def __init__(self, db=None):
+        self.search_service = SearchService(db=db)
         self.llm = ProviderFactory.get_provider()
     @traceable(name="Resume Search")
     def ask(
@@ -23,32 +23,17 @@ class RAGChain:
         top_k: int = 3
     ):
 
-        # Create embedding
         normalized_query = QueryNormalizer.normalize(question)
-        embedding = EmbeddingGenerator.generate_embedding(normalized_query)
-
-        # Search Chroma
-        results = self.chroma.search(
-            query_embedding=embedding,
-            top_k=top_k
+        candidates = self.search_service.search_resumes(
+            query=normalized_query,
+            top_k=top_k,
         )
 
-        documents = results.get("documents", [])
-
-        if not documents:
-
-            return {
-                "query": question,
-                "best_candidate": {},
-                "rank": 0,
-                "reason": "No matching resume found.",
-                "other_candidates": []
-            }
-
-        context = "\n\n".join(documents[0])
+        if not candidates:
+            return ground_search_response(question, [], None)
 
         prompt = RAG_PROMPT.format(
-            context=context,
+            context=build_ranked_context(candidates),
             question=question
         )
 
@@ -62,7 +47,12 @@ class RAGChain:
         print(response)
         print("=" * 80)
 
-        return JsonParser.parse(response)
+        generated = JsonParser.parse(response)
+        return ground_search_response(
+            question,
+            candidates,
+            generated,
+        )
 
     @traceable(name="Resume Summary")
     def summarize_resume(

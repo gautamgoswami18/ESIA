@@ -1,4 +1,10 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import (
+    APIRouter,
+    Depends,
+    File,
+    HTTPException,
+    UploadFile
+)
 from sqlalchemy.orm import Session
 
 from app.database import get_db
@@ -7,11 +13,14 @@ from app.services.resume_service import ResumeService
 from pathlib import Path
 from fastapi.responses import FileResponse
 from app.core.exceptions import ResourceNotFoundException
-from app.ai.embedding_generator import EmbeddingGenerator
+from app.schemas.save_resume import SaveResumeRequest
+
+from fastapi import UploadFile, File
+
 
 router = APIRouter(
-    prefix="/resumes",
-    tags=["Resumes"]
+    prefix="/resume",
+    tags=["Resume"]
 )
 
 
@@ -29,7 +38,26 @@ def get_resumes(db: Session = Depends(get_db)):
     )
 
 
-@router.get("/{employee_id}")
+@router.post("/save")
+def save_processed_resume(
+    request: SaveResumeRequest,
+    db: Session = Depends(get_db)
+):
+
+    service = ResumeService(db)
+
+    result = service.save_resume(
+        request.process_id
+    )
+
+    return APIResponse(
+        success=True,
+        message="Employee and resume saved successfully.",
+        data=result
+    )
+
+
+@router.get("/{employee_id:int}")
 def get_resume(
     employee_id: int,
     db: Session = Depends(get_db)
@@ -53,14 +81,14 @@ def get_resume(
     )
 
 
-@router.get("/{employee_id}/download")
+@router.get("/{employee_id:int}/download")
 def download_resume(
     employee_id: int,
     db: Session = Depends(get_db)
 ):
     service = ResumeService(db)
 
-    resume = service.get_resume_file(employee_id)
+    resume = service.get_resume_metadata(employee_id)
     
     if resume is None:
         raise ResourceNotFoundException("Resume")
@@ -81,7 +109,7 @@ def download_resume(
     )
 
 
-@router.post("/{employee_id}/parse")
+@router.post("/{employee_id:int}/parse")
 def parse_resume(
     employee_id: int,
     db: Session = Depends(get_db)
@@ -95,7 +123,7 @@ def parse_resume(
             data=result
         )
     
-@router.post("/{employee_id}/embedding")
+@router.post("/{employee_id:int}/embedding")
 def generate_embedding(
     employee_id: int,
     db: Session = Depends(get_db)
@@ -128,9 +156,95 @@ def process_all_resumes(
     service = ResumeService(db)
 
     result = service.process_all_resumes()
+    success = result["failed"] == 0
 
     return {
-        "success": True,
-        "message": "Resume processing completed successfully.",
+        "success": success,
+        "message": (
+            "All resumes were reindexed successfully."
+            if success
+            else "Resume reindexing completed with failures."
+        ),
         "data": result
     }
+
+
+@router.post("/{employee_id:int}/upload")
+def upload_resume(
+    employee_id: int,
+    file: UploadFile = File(...),
+    db: Session = Depends(get_db)
+):
+
+    service = ResumeService(db)
+
+    try:
+
+        result = service.upload_resume(
+            employee_id=employee_id,
+            uploaded_file=file
+        )
+
+        return APIResponse(
+            success=True,
+            message="Resume uploaded successfully.",
+            data=result
+        )
+
+    except ValueError as ex:
+
+        raise HTTPException(
+            status_code=400,
+            detail=str(ex)
+        )
+
+    except Exception as ex:
+
+        raise HTTPException(
+            status_code=500,
+            detail=str(ex)
+        )
+    
+# ==========================================================
+# PROCESS RESUME (AI ONLY)
+# ==========================================================
+
+@router.post(
+    "/process",
+    response_model=APIResponse
+)
+def process_resume(
+    file: UploadFile = File(...),
+    db: Session = Depends(get_db)
+):
+
+    service = ResumeService(db)
+
+    try:
+
+        print("FILE RECEIVED:", file.filename)
+        print("CONTENT TYPE:", file.content_type)
+
+        result = service.process_resume(
+            uploaded_file=file
+        )
+
+        return APIResponse(
+            success=True,
+            message="Resume processed successfully.",
+            data=result
+        )
+
+    except ValueError as ex:
+
+        raise HTTPException(
+            status_code=400,
+            detail=str(ex)
+        )
+
+    except Exception as ex:
+
+        raise HTTPException(
+            status_code=500,
+            detail=str(ex)
+        )

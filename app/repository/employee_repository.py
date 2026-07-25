@@ -10,9 +10,7 @@ class EmployeeRepository(BaseRepository):
         "designation": "e.designation",
         "location": "e.location",
         "experience_years": "e.experience_years",
-        "domain": "e.domain",
         "joining_date": "e.joining_date",
-        "utilization": "e.utilization",
         "employment_status": "e.employment_status"
     }
 
@@ -25,10 +23,10 @@ class EmployeeRepository(BaseRepository):
             e.designation,
             e.location,
             e.experience_years,
-            e.domain,
-            s.skill_name AS primary_skill,
-            e.utilization,
-            e.availability,
+            NULL::text AS domain,
+            NULL::text AS primary_skill,
+            NULL::integer AS utilization,
+            NULL::text AS availability,
             e.joining_date,
             e.employment_status
     """
@@ -36,8 +34,6 @@ class EmployeeRepository(BaseRepository):
     BASE_FROM = """
         FROM esia.employees e
 
-        LEFT JOIN esia.skills s
-            ON e.primary_skill_id = s.skill_id
     """
 
     # ---------------------------------------------------
@@ -69,8 +65,6 @@ class EmployeeRepository(BaseRepository):
                     OR e.email ILIKE :search
                     OR e.designation ILIKE :search
                     OR e.location ILIKE :search
-                    OR e.domain ILIKE :search
-                    OR s.skill_name ILIKE :search
                 )
             """)
         
@@ -90,39 +84,19 @@ class EmployeeRepository(BaseRepository):
         # PRIMARY SKILL
         # ---------------------------------------
 
-        if filters.skill:
+        # ---------------------------------------
+        # DESIGNATION
+        # ---------------------------------------
+
+        designation = filters.designation or filters.domain
+
+        if designation:
 
             conditions.append(
-                "s.skill_name ILIKE :skill"
+                "e.designation ILIKE :designation"
             )
 
-            params["skill"] = filters.skill
-
-
-        # ---------------------------------------
-        # DOMAIN
-        # ---------------------------------------
-
-        if filters.domain:
-
-            conditions.append(
-                "e.domain ILIKE :domain"
-            )
-
-            params["domain"] = filters.domain
-
-
-        # ---------------------------------------
-        # AVAILABILITY
-        # ---------------------------------------
-
-        if filters.availability:
-
-            conditions.append(
-                "e.availability = :availability"
-            )
-
-            params["availability"] = filters.availability
+            params["designation"] = designation
 
 
         # ---------------------------------------
@@ -246,3 +220,186 @@ class EmployeeRepository(BaseRepository):
         )
 
         return result
+    
+    def get_employee_by_email(
+        self,
+        email: str
+    ):
+
+        sql = """
+            SELECT
+                employee_id,
+                first_name,
+                last_name,
+                email,
+                designation,
+                experience_years,
+                location
+            FROM esia.employees
+            WHERE LOWER(email) = LOWER(:email)
+        """
+
+        return self.fetch_one(
+            sql,
+            {
+                "email": email
+            }
+        )
+
+    def get_employee_by_name(
+        self,
+        first_name: str,
+        last_name: str | None
+    ):
+
+        sql = """
+            SELECT employee_id
+            FROM esia.employees
+            WHERE LOWER(first_name) = LOWER(:first_name)
+              AND LOWER(COALESCE(last_name, '')) =
+                  LOWER(COALESCE(:last_name, ''))
+            ORDER BY employee_id
+            LIMIT 1
+        """
+
+        return self.fetch_one(
+            sql,
+            {
+                "first_name": first_name,
+                "last_name": last_name
+            }
+        )
+    
+    
+        
+    def create_employee(
+        self,
+        employee
+    ) -> int:
+    
+        sql = """
+            INSERT INTO esia.employees
+            (
+                first_name,
+                last_name,
+                email,
+                designation,
+                experience_years,
+                location
+            )
+            VALUES
+            (
+                :first_name,
+                :last_name,
+                :email,
+                :designation,
+                :experience_years,
+                :location
+            )
+            RETURNING employee_id;
+        """
+    
+        result = self.fetch_one(
+            sql,
+            {
+                "first_name": employee.first_name,
+                "last_name": employee.last_name,
+                "email": employee.email,
+                "designation": employee.designation,
+                "experience_years": employee.experience_years,
+                "location": employee.location
+            }
+        )
+    
+        return result["employee_id"]
+    
+    def get_employee_by_email(
+        self,
+        email: str
+    ):
+
+        sql = """
+            SELECT
+                employee_id
+            FROM esia.employees
+            WHERE LOWER(email) = LOWER(:email)
+        """
+
+        return self.fetch_one(
+            sql,
+            {
+                "email": email
+            }
+        )
+    
+    def update_employee(
+        self,
+        employee_id: int,
+        employee
+    ):
+
+        sql = """
+            UPDATE esia.employees
+            SET
+
+                first_name = :first_name,
+
+                last_name = :last_name,
+
+                email = :email,
+
+                designation = :designation,
+
+                experience_years = :experience_years,
+
+                location = :location
+
+            WHERE employee_id = :employee_id
+        """
+
+        self.execute(
+            sql,
+            {
+
+                "employee_id": employee_id,
+
+                "first_name": employee.first_name,
+
+                "last_name": employee.last_name,
+
+                "email": employee.email,
+
+                "designation": employee.designation,
+
+                "experience_years": employee.experience_years,
+
+                "location": employee.location
+
+            }
+        )
+
+    def save_employee(
+        self,
+        employee
+    ) -> int:
+
+        repository = EmployeeRepository(
+            self.db
+        )
+
+        existing = repository.get_employee_by_email(
+            employee.email
+        )
+
+        if existing:
+
+            repository.update_employee(
+                existing["employee_id"],
+                employee
+            )
+
+            return existing["employee_id"]
+
+        return repository.create_employee(
+            employee
+        )    
