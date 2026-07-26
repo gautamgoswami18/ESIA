@@ -136,7 +136,16 @@ chart_left, chart_middle, chart_right = st.columns([1, 1, 1.3])
 with chart_left:
     with st.container(border=True):
         st.markdown("#### Experience Distribution")
-        experience_counts = Counter()
+        experience_bands = (
+            "0–2 years",
+            "2–5 years",
+            "5–10 years",
+            "10–15 years",
+            "15+ years",
+        )
+        experience_counts = Counter(
+            {band: 0 for band in experience_bands}
+        )
         for employee in employees:
             years = float(employee.get("experience_years") or 0)
             if years < 2:
@@ -150,14 +159,53 @@ with chart_left:
             else:
                 band = "15+ years"
             experience_counts[band] += 1
-        if experience_counts:
+        if employees:
             frame = pd.DataFrame(
                 {
-                    "Experience": list(experience_counts),
-                    "Employees": list(experience_counts.values()),
+                    "Experience": experience_bands,
+                    "Employees": [
+                        experience_counts[band]
+                        for band in experience_bands
+                    ],
                 }
-            ).set_index("Experience")
-            st.bar_chart(frame, color="#0b5de8", height=270)
+            )
+            st.vega_lite_chart(
+                frame,
+                {
+                    "mark": {
+                        "type": "bar",
+                        "color": "#0b5de8",
+                    },
+                    "encoding": {
+                        "x": {
+                            "field": "Experience",
+                            "type": "nominal",
+                            "sort": list(experience_bands),
+                            "axis": {
+                                "title": None,
+                                "labelAngle": -35,
+                            },
+                        },
+                        "y": {
+                            "field": "Employees",
+                            "type": "quantitative",
+                            "axis": {"title": None},
+                        },
+                        "tooltip": [
+                            {
+                                "field": "Experience",
+                                "type": "nominal",
+                            },
+                            {
+                                "field": "Employees",
+                                "type": "quantitative",
+                            },
+                        ],
+                    },
+                    "height": 270,
+                },
+                use_container_width=True,
+            )
         else:
             empty_state(
                 "No employee data",

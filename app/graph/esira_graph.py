@@ -125,5 +125,10 @@ class ESIRAGraph:
         return ESIRAResponse(
             intent=result["intent"],
             content_type=result["content_type"],
-            answer=result["answer"]
+            answer=result["answer"],
+            employee_id=(
+                result.get("employee1")
+                if result["intent"] == "SUMMARY"
+                else None
+            ),
         )

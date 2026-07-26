@@ -11,3 +11,4 @@ class ESIRAResponse(BaseModel):
     intent: str
     content_type: str
     answer: Any
+    employee_id: int | None = None

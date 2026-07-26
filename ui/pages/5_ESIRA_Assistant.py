@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from html import escape
+import re
 from typing import Any
 
 import streamlit as st
@@ -12,6 +13,7 @@ from components.enterprise_ui import (
     empty_state,
     initials,
     page_header,
+    safe_name,
     source_badge,
 )
 from services.workforce_service import WorkforceService
@@ -24,6 +26,204 @@ if "esira_messages" not in st.session_state:
     st.session_state.esira_messages = []
 if "esira_conversations" not in st.session_state:
     st.session_state.esira_conversations = []
+
+
+@st.cache_data(ttl=120, show_spinner=False)
+def load_summary_profile(employee_id: int) -> dict:
+    payload = WorkforceService().employee_profile(employee_id)
+    return payload.get("data") or {}
+
+
+def summary_employee_id(
+    response: dict[str, Any],
+    message_index: int,
+) -> int | None:
+    value = response.get("employee_id")
+    if value is not None:
+        try:
+            return int(value)
+        except (TypeError, ValueError):
+            pass
+
+    if message_index <= 0:
+        return None
+
+    messages = st.session_state.get("esira_messages") or []
+    if message_index > len(messages) - 1:
+        return None
+
+    previous = messages[message_index - 1]
+    if previous.get("role") != "user":
+        return None
+
+    match = re.search(
+        r"\bEMP(?:LOYEE)?\s*[-:#]?\s*(\d+)\b",
+        str(previous.get("content") or ""),
+        flags=re.IGNORECASE,
+    )
+    return int(match.group(1)) if match else None
+
+
+def format_summary_experience(value: Any) -> str | None:
+    if value in (None, ""):
+        return None
+    try:
+        years = float(value)
+    except (TypeError, ValueError):
+        return None
+    formatted = f"{years:.1f}".rstrip("0").rstrip(".")
+    return f"{formatted} years"
+
+
+def render_employee_summary(
+    response: dict[str, Any],
+    summary: str,
+    message_index: int,
+) -> bool:
+    employee_id = summary_employee_id(response, message_index)
+    if employee_id is None:
+        return False
+
+    profile = {}
+    profile_error = None
+    try:
+        profile = load_summary_profile(employee_id)
+    except APIError as ex:
+        profile_error = str(ex)
+
+    employee = profile.get("employee") or {}
+    name = (
+        safe_name(employee)
+        if employee
+        else f"Employee EMP{employee_id:04d}"
+    )
+    designation = employee.get("designation") or "Role not specified"
+    experience = format_summary_experience(
+        employee.get("experience_years")
+    )
+    location = employee.get("location")
+    status = employee.get("employment_status")
+    skills = profile.get("skills") or []
+    projects = profile.get("projects") or []
+    training = profile.get("training") or []
+    certifications = profile.get("certifications") or []
+    primary_skill = profile.get("primary_skill")
+
+    metadata = [
+        value
+        for value in (experience, location, status)
+        if value
+    ]
+    metadata_html = "".join(
+        f'<span class="summary-meta-pill">{escape(str(value))}</span>'
+        for value in metadata
+    )
+    safe_summary = escape(summary).replace("\n", "<br>")
+    skills_html = chips(skills, limit=10)
+    if primary_skill:
+        skills_html = (
+            f'<span class="chip primary">'
+            f"{escape(str(primary_skill))}</span>"
+            f"{skills_html}"
+        )
+    remaining_skills = max(len(skills) - 10, 0)
+    if remaining_skills:
+        skills_html += (
+            f'<span class="summary-more-chip">+{remaining_skills} more</span>'
+        )
+
+    skills_section_html = (
+        (
+            '<div class="summary-section-label summary-skills-label">'
+            "Core skills"
+            "</div>"
+            f'<div class="summary-skills">{skills_html}</div>'
+        )
+        if skills_html
+        else ""
+    )
+    has_structured_details = bool(
+        primary_skill
+        or skills
+        or projects
+        or training
+        or certifications
+    )
+    profile_details_html = (
+        (
+            '<div class="summary-stat-grid">'
+            '<div class="summary-stat">'
+            f"<strong>{len(skills)}</strong><span>Skills</span>"
+            "</div>"
+            '<div class="summary-stat">'
+            f"<strong>{len(projects)}</strong><span>Projects</span>"
+            "</div>"
+            '<div class="summary-stat">'
+            f"<strong>{len(training)}</strong><span>Training</span>"
+            "</div>"
+            '<div class="summary-stat">'
+            f"<strong>{len(certifications)}</strong>"
+            "<span>Certifications</span>"
+            "</div>"
+            "</div>"
+        )
+        if has_structured_details
+        else ""
+    )
+
+    st.html(
+        f"""
+        <div class="assistant-summary-card">
+          <div class="assistant-summary-hero">
+            <span class="summary-avatar">{escape(initials(name))}</span>
+            <div class="summary-identity">
+              <div class="summary-eyebrow">Employee intelligence</div>
+              <h3>{escape(name)}</h3>
+              <p>{escape(str(designation))}</p>
+              <div class="summary-meta">
+                <span class="summary-id">EMP{employee_id:04d}</span>
+                {metadata_html}
+              </div>
+            </div>
+            <span class="summary-ai-label">AI Resume Summary</span>
+          </div>
+          <div class="assistant-summary-body">
+            <div class="summary-section-label">Executive summary</div>
+            <div class="summary-copy">{safe_summary}</div>
+            {skills_section_html}
+            {profile_details_html}
+          </div>
+          <div class="assistant-summary-footer">
+            <span class="summary-source-dot"></span>
+            Resume intelligence from ChromaDB, identity verified in PostgreSQL
+          </div>
+        </div>
+        """
+    )
+
+    footer_left, footer_action = st.columns([3.3, 1.2])
+    with footer_left:
+        if profile_error:
+            st.caption(
+                "The summary is available, but structured profile details "
+                f"could not be loaded: {profile_error}"
+            )
+        else:
+            st.caption(
+                "AI-generated summary. Verify important staffing decisions "
+                "against the employee profile and original resume."
+            )
+    with footer_action:
+        if st.button(
+            "View Employee 360",
+            icon=":material/person:",
+            key=f"summary_profile_{message_index}_{employee_id}",
+            width="stretch",
+        ):
+            st.session_state.selected_employee_id = employee_id
+            st.switch_page("pages/2_Employee_360.py")
+
+    return True
 
 
 def candidate_score(candidate: dict) -> float | None:
@@ -198,7 +398,51 @@ def render_answer(
             disclaimer = answer.get("disclaimer")
             if disclaimer:
                 st.caption(str(disclaimer))
-            return
+        else:
+            recommendation = (
+                answer.get("recommendation")
+                or "No employee met the required match threshold."
+            )
+            query = answer.get("query")
+            query_html = (
+                '<div class="no-match-query">'
+                f'Searched for: “{escape(str(query))}”'
+                "</div>"
+                if query
+                else ""
+            )
+            st.html(
+                f"""
+                <div class="assistant-no-match">
+                  <div class="no-match-icon">?</div>
+                  <div class="no-match-content">
+                    <div class="no-match-eyebrow">Search completed</div>
+                    <h4>No suitable candidates found</h4>
+                    <p>{escape(str(recommendation))}</p>
+                    {query_html}
+                    <div class="no-match-tip">
+                      Try a broader skill, remove one requirement, or lower
+                      the experience constraint.
+                    </div>
+                  </div>
+                </div>
+                """
+            )
+            disclaimer = answer.get("disclaimer")
+            if disclaimer:
+                st.caption(str(disclaimer))
+        return
+
+    if (
+        intent.upper() == "SUMMARY"
+        and isinstance(answer, str)
+        and render_employee_summary(
+            response,
+            answer,
+            message_index,
+        )
+    ):
+        return
 
     if isinstance(answer, str):
         st.markdown(answer)
@@ -216,7 +460,10 @@ page_header(
 history_column, chat_column, sources_column = st.columns([1.05, 3.2, 1.15])
 
 with history_column:
-    with st.container(border=True):
+    with st.container(
+        border=True,
+        key="assistant_history_panel",
+    ):
         if st.button(
             "New conversation",
             icon=":material/add:",
@@ -302,23 +549,31 @@ with chat_column:
                 st.markdown(message["content"])
 
     st.markdown("##### Suggested searches")
-    prompt_columns = st.columns(3)
     suggestions = (
         "Find FastAPI developers with Docker experience",
         "Show available employees with AWS certification",
-        "Who has banking-domain project experience?",
+        "Summarize employee 1045",
+        "Compare employees 1045 and 1089",
     )
     selected_prompt = None
-    for column, suggestion in zip(prompt_columns, suggestions):
-        if column.button(
-            suggestion,
-            key=f"suggestion_{suggestion}",
-            width="stretch",
+    for row_start in range(0, len(suggestions), 2):
+        prompt_columns = st.columns(2)
+        for column, suggestion in zip(
+            prompt_columns,
+            suggestions[row_start:row_start + 2],
         ):
-            selected_prompt = suggestion
+            if column.button(
+                suggestion,
+                key=f"suggestion_{suggestion}",
+                width="stretch",
+            ):
+                selected_prompt = suggestion
 
 with sources_column:
-    with st.container(border=True):
+    with st.container(
+        border=True,
+        key="assistant_sources_panel",
+    ):
         st.markdown("##### Sources Used")
         st.markdown(
             f"""
